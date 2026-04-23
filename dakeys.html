@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Espace client — Dakeys.fr | Lak. Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #f15a24;
+    --orange-light: rgba(241, 90, 36, 0.08);
+    --orange-mid: rgba(241, 90, 36, 0.15);
+    --bg: #ffffff;
+    --bg-secondary: #f8f7f5;
+    --bg-tertiary: #f2f0ec;
+    --text-primary: #1a1916;
+    --text-secondary: #6b6860;
+    --text-tertiary: #a09e99;
+    --border: rgba(0,0,0,0.08);
+    --border-strong: rgba(0,0,0,0.14);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .lak-logo {
+    width: 30px;
+    height: 30px;
+    background: var(--orange);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lak-logo svg {
+    width: 16px;
+    height: 16px;
+    fill: white;
+  }
+
+  .lak-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .topbar-divider {
+    width: 1px;
+    height: 18px;
+    background: var(--border-strong);
+    margin: 0 10px;
+  }
+
+  .topbar-client {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: #eaf7ef;
+    color: #1a7a45;
+    letter-spacing: 0.01em;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* PAGE HEADER */
+  .page-header {
+    margin-bottom: 2rem;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .page-header h1 {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .page-header p {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-tertiary);
+    margin-bottom: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* FLOW STEPS inside summary card */
+  .flow-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .flow-step {
+    display: flex;
+    gap: 14px;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+
+  .flow-step:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .flow-step:first-child {
+    padding-top: 0;
+  }
+
+  .flow-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--orange-light);
+    border: 1px solid var(--orange-mid);
+    color: var(--orange);
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .flow-content strong {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .flow-content p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* FEEDBACK BLOCK */
+  .feedback-block {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+  }
+
+  .feedback-block p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .feedback-btns {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-strong);
+    background: var(--bg);
+    color: var(--text-primary);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .btn:hover {
+    background: var(--bg-tertiary);
+  }
+
+  .btn-primary {
+    background: var(--orange);
+    color: white;
+    border-color: var(--orange);
+  }
+
+  .btn-primary:hover {
+    background: #d94f1e;
+    border-color: #d94f1e;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--text-secondary);
+  }
+
+  .btn-ghost:hover {
+    background: var(--bg-secondary);
+  }
+
+  /* PROGRESS STEPS */
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg);
+    margin-bottom: 1rem;
+  }
+
+  .step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    transition: background 0.15s;
+  }
+
+  .step-row:last-child {
+    border-bottom: none;
+  }
+
+  .step-row.locked {
+    background: var(--bg-secondary);
+    opacity: 0.5;
+  }
+
+  .step-row.active {
+    background: var(--bg);
+  }
+
+  .step-indicator {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    flex-shrink: 0;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .step-indicator.todo {
+    background: var(--orange);
+    color: white;
+  }
+
+  .step-indicator.pending {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-strong);
+    color: var(--text-secondary);
+  }
+
+  .step-indicator.locked-icon {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    color: var(--text-tertiary);
+  }
+
+  .step-body {
+    flex: 1;
+    padding-top: 5px;
+  }
+
+  .step-body h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+  }
+
+  .step-body p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 0;
+  }
+
+  .step-body .step-cta {
+    margin-top: 10px;
+  }
+
+  .step-row.locked .step-body h3 {
+    color: var(--text-tertiary);
+  }
+
+  .duration-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 99px;
+    background: var(--orange-light);
+    color: var(--orange);
+    margin-top: 6px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .lock-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 99px;
+    background: var(--bg-tertiary);
+    color: var(--text-tertiary);
+    margin-top: 6px;
+    border: 1px solid var(--border);
+  }
+
+  /* CONTACT CARD */
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--orange-light);
+    border: 1px solid var(--orange-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .contact-info strong {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    display: block;
+  }
+
+  .contact-info span {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .contact-info a {
+    color: var(--orange);
+    text-decoration: none;
+    font-size: 13px;
+  }
+
+  .contact-info a:hover {
+    text-decoration: underline;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.1s; }
+  .card:nth-child(3) { animation-delay: 0.15s; }
+  .steps-list { animation: fadeUp 0.4s ease 0.15s both; }
+  .contact-card { animation-delay: 0.2s; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer p {
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  .footer span {
+    color: var(--orange);
+    font-weight: 500;
+  }
+
+  @media (max-width: 600px) {
+    .topbar { padding: 0 1rem; }
+    .topbar-client { display: none; }
+    .main { padding: 1.5rem 1rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="lak-logo">
+      <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    </div>
+    <span class="lak-name">Lak. Agency</span>
+    <div class="topbar-divider"></div>
+    <span class="topbar-client">Dakeys.fr</span>
+  </div>
+  <div class="topbar-right">
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      Projet en cours
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h1>Bonjour Yoni 👋</h1>
+    <p>Voici l'espace dédié à votre projet d'automatisation. Tout se passe ici.</p>
+  </div>
+
+  <!-- SECTION : CE QU'ON VA FAIRE -->
+  <div class="section-label">La solution</div>
+
+  <div class="card">
+    <div class="card-title">Automatisation de la gestion et qualification des leads entrants</div>
+    <p style="font-size:13px; color:var(--text-secondary); line-height:1.65; margin-bottom:1.25rem;">
+      Dès qu'un lead arrive dans votre boîte mail (depuis SeLoger, LeBonCoin ou un transfert direct), le système détecte automatiquement qu'il s'agit d'une nouvelle demande et prend en charge le contact sans aucune intervention de votre part.
+    </p>
+
+    <div class="flow-list">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <strong>Premier contact automatique</strong>
+          <p>Dans la minute qui suit la réception du lead, il reçoit simultanément un SMS et un email. Ce message le remercie pour son contact, lui confirme que sa demande est bien prise en charge, et l'invite à remplir un court formulaire en attendant d'être rappelé. Ce formulaire nous permet de récupérer les premières informations essentielles et de mieux qualifier sa demande avant le rappel.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <strong>Relance automatique si pas de réponse</strong>
+          <p>Si le lead ne soumet pas le formulaire dans le délai convenu ensemble, il reçoit automatiquement un message de relance. Si après ce deuxième message il ne répond toujours pas, sa fiche est transmise directement au bon négociateur pour qu'il le rappelle manuellement.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <strong>Confirmation à la soumission du formulaire</strong>
+          <p>Dès que le lead soumet le formulaire, il reçoit immédiatement un message de confirmation le remerciant et lui indiquant qu'un négociateur va le recontacter dans les meilleurs délais.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <strong>Scoring et transmission au bon négociateur</strong>
+          <p>Sur la base de critères définis ensemble (budget, délai d'achat, situation financière, type de bien recherché, etc.), une IA analyse les réponses du lead et lui attribue une note de 1 à 5 — 5 étant un lead très chaud et 1 un lead peu qualifié. En fonction de cette note et d'autres critères de routing définis ensemble, le lead est automatiquement transmis par email au négociateur le plus adapté, avec l'ensemble de ses informations et sa note de qualification.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEEDBACK -->
+    <div class="feedback-block">
+      <p>Cette solution vous convient-elle telle quelle, ou souhaitez-vous modifier ou adapter certains éléments avant qu'on démarre ?</p>
+      <div class="feedback-btns">
+        <a href="https://agencelak.fillout.com/t/prJphCj4zqus" target="_blank" class="btn btn-primary">La solution me convient — je continue ✓</a>
+        <a href="https://wa.me/33769892601?text=Bonjour%20Adam%2C%20j%27aimerais%20modifier%20certains%20%C3%A9l%C3%A9ments%20de%20la%20solution%20propos%C3%A9e." target="_blank" class="btn btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Je veux modifier quelque chose
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION : BÉNÉFICES -->
+  <div class="section-label">Ce que ça change concrètement</div>
+
+  <div class="card" style="padding: 1.25rem 1.5rem;">
+    <div style="display:flex; flex-direction:column; gap:0;">
+
+      <div style="display:flex; gap:14px; align-items:flex-start; padding:0.9rem 0; border-bottom:1px solid var(--border);">
+        <div style="width:36px; height:36px; border-radius:var(--radius-sm); background:var(--orange-light); border:1px solid var(--orange-mid); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <p style="font-size:14px; font-weight:500; color:var(--text-primary); margin-bottom:3px;">Lead recontacté dans la minute</p>
+          <p style="font-size:13px; color:var(--text-secondary); line-height:1.55;">Plus le contact est rapide, plus les chances de conversion sont élevées. Vos leads ne refroidissent plus dans une boîte mail.</p>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:14px; align-items:flex-start; padding:0.9rem 0; border-bottom:1px solid var(--border);">
+        <div style="width:36px; height:36px; border-radius:var(--radius-sm); background:var(--orange-light); border:1px solid var(--orange-mid); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div>
+          <p style="font-size:14px; font-weight:500; color:var(--text-primary); margin-bottom:3px;">Qualification et premières infos collectées automatiquement</p>
+          <p style="font-size:13px; color:var(--text-secondary); line-height:1.55;">Le formulaire récupère les informations clés sans intervention de votre équipe. Chaque lead est qualifié et noté avant même le premier appel.</p>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:14px; align-items:flex-start; padding:0.9rem 0;">
+        <div style="width:36px; height:36px; border-radius:var(--radius-sm); background:var(--orange-light); border:1px solid var(--orange-mid); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div>
+          <p style="font-size:14px; font-weight:500; color:var(--text-primary); margin-bottom:3px;">Transmission automatique au bon négociateur</p>
+          <p style="font-size:13px; color:var(--text-secondary); line-height:1.55;">Le bon négociateur reçoit le lead avec toutes les infos et le contexte nécessaires pour rappeler efficacement — sans avoir à chercher, sans friction.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION : ÉTAPES -->
+  <div class="section-label">Prochaines étapes</div>
+
+  <div class="steps-list">
+
+    <!-- ÉTAPE 1 -->
+    <div class="step-row active">
+      <div class="step-indicator todo">1</div>
+      <div class="step-body">
+        <h3>Remplir le formulaire d'onboarding</h3>
+        <p>Ce formulaire nous donne toutes les informations nécessaires pour configurer votre automatisation. Comptez environ 10 minutes.</p>
+        <div class="step-cta">
+          <a href="https://agencelak.fillout.com/t/prJphCj4zqus" target="_blank" class="btn btn-primary">Remplir le formulaire →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 2 -->
+    <div class="step-row active">
+      <div class="step-indicator todo">2</div>
+      <div class="step-body">
+        <h3>Signer le contrat</h3>
+        <p>Le contrat récapitule les prestations, délais et conditions. Signature en ligne, prend moins d'une minute.</p>
+        <div class="step-cta">
+          <a href="https://agence-lak.odoo.com/sign/document/mail/4/34729e61-3108-48e7-9f18-f933240e3d5a" target="_blank" class="btn btn-primary">Signer le contrat →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 3 -->
+    <div class="step-row">
+      <div class="step-indicator pending">3</div>
+      <div class="step-body">
+        <h3>Création de l'automatisation</h3>
+        <p>Une fois le formulaire reçu et le contrat signé, on démarre la construction. Vous êtes tenu informé à chaque étape clé.</p>
+        <div class="duration-tag">⏱ 7 jours</div>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 4 — GRISÉE -->
+    <div class="step-row locked">
+      <div class="step-indicator locked-icon">4</div>
+      <div class="step-body">
+        <h3>Réserver votre call de lancement</h3>
+        <p>Un appel de briefing pour valider la configuration, tester l'automatisation ensemble et répondre à vos questions.</p>
+        <div class="lock-tag">🔒 Disponible après livraison</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION : INTERLOCUTEUR -->
+  <div class="section-label">Votre interlocuteur</div>
+
+  <div class="contact-card">
+    <div class="avatar">AL</div>
+    <div class="contact-info">
+      <strong>Adam Lamoot</strong>
+      <span>Lak. Agency &nbsp;·&nbsp; <a href="mailto:adam@lak-agency.com">adam@lak-agency.com</a></span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Espace client créé par <span>Lak. Agency</span> pour Dakeys.fr</p>
+  </div>
+
+</div>
+
+</body>
+</html>
