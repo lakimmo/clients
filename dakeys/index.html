@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Espace client — Dakeys.fr | Lak. Agency</title>
+<title>Espace client, Dakeys.fr | Lak. Agency</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -538,36 +538,82 @@
   <div class="card">
     <div class="card-title">Automatisation de la gestion et qualification des leads entrants</div>
     <p style="font-size:13px; color:var(--text-secondary); line-height:1.65; margin-bottom:1.25rem;">
-      Dès qu'un lead arrive dans votre boîte mail (depuis SeLoger, LeBonCoin ou un transfert direct), le système détecte automatiquement qu'il s'agit d'une nouvelle demande et prend en charge le contact sans aucune intervention de votre part.
+      Dès qu'un lead arrive dans votre boîte mail (depuis SeLoger, LeBonCoin ou un transfert direct), le système détecte automatiquement qu'il s'agit d'une nouvelle demande et prend en charge le contact sans aucune intervention de votre part. L'objectif est clair : qualifier rapidement le lead, vérifier sa solvabilité et générer une prise de rendez-vous ou une demande de visite dans les meilleurs délais.
     </p>
 
     <div class="flow-list">
       <div class="flow-step">
         <div class="flow-num">1</div>
         <div class="flow-content">
-          <strong>Premier contact automatique</strong>
-          <p>Dans la minute qui suit la réception du lead, il reçoit simultanément un SMS et un email. Ce message le remercie pour son contact, lui confirme que sa demande est bien prise en charge, et l'invite à remplir un court formulaire en attendant d'être rappelé. Ce formulaire nous permet de récupérer les premières informations essentielles et de mieux qualifier sa demande avant le rappel.</p>
+          <strong>Premier contact automatique, orienté conversion</strong>
+          <p>Dans la minute qui suit la réception du lead, il reçoit simultanément un SMS et un email. Ce message est conçu pour rassurer, créer un sentiment d'urgence et pousser à agir rapidement, en soulignant par exemple que le bien suscite beaucoup de demandes et que les dossiers complets sont traités en priorité. Il invite le lead à remplir un court formulaire pour obtenir une réponse rapide.</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num">2</div>
         <div class="flow-content">
-          <strong>Relance automatique si pas de réponse</strong>
-          <p>Si le lead ne soumet pas le formulaire dans le délai convenu ensemble, il reçoit automatiquement un message de relance. Si après ce deuxième message il ne répond toujours pas, sa fiche est transmise directement au bon négociateur pour qu'il le rappelle manuellement.</p>
+          <strong>Formulaire de qualification structuré</strong>
+          <p>Le formulaire collecte les informations essentielles pour évaluer la solvabilité et la qualité du dossier. Voici les informations qui seront demandées au lead, nous affinerons ensemble la liste exacte dans le formulaire d'onboarding :</p>
+          <ul style="margin-top:8px; padding-left:18px; display:flex; flex-direction:column; gap:3px;">
+            <li style="font-size:13px; color:var(--text-secondary);">Situation professionnelle (CDI, CDD, indépendant…)</li>
+            <li style="font-size:13px; color:var(--text-secondary);">Revenus mensuels</li>
+            <li style="font-size:13px; color:var(--text-secondary);">Type de dossier (seul ou en couple)</li>
+            <li style="font-size:13px; color:var(--text-secondary);">Présence de garants</li>
+            <li style="font-size:13px; color:var(--text-secondary);">Date d'entrée souhaitée</li>
+            <li style="font-size:13px; color:var(--text-secondary);">Raison du déménagement</li>
+          </ul>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num">3</div>
         <div class="flow-content">
-          <strong>Confirmation à la soumission du formulaire</strong>
-          <p>Dès que le lead soumet le formulaire, il reçoit immédiatement un message de confirmation le remerciant et lui indiquant qu'un négociateur va le recontacter dans les meilleurs délais.</p>
+          <strong>Scoring structuré sur 5 niveaux</strong>
+          <p>Sur la base des réponses et des informations reçues depuis l'annonce, une IA attribue une note de 1 à 5 selon des critères précis :</p>
+          <ul style="margin-top:8px; padding-left:18px; display:flex; flex-direction:column; gap:3px;">
+            <li style="font-size:13px; color:var(--text-secondary);">Score 5, Lead ultra chaud : revenus ≥ 3x le loyer, CDI ou équivalent, disponibilité immédiate, dossier complet</li>
+            <li style="font-size:13px; color:var(--text-secondary);">Score 3, Lead solvable mais dossier incomplet</li>
+            <li style="font-size:13px; color:var(--text-secondary);">Score 1, Lead hors budget ou profil à risque</li>
+          </ul>
+          <p style="margin-top:8px; font-size:12px; color:var(--text-tertiary); font-style:italic;">Les critères de scoring complets seront définis ensemble dans le formulaire d'onboarding, plus vous êtes précis, plus la notation sera juste et utile pour vos négociateurs.</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num">4</div>
         <div class="flow-content">
-          <strong>Scoring et transmission au bon négociateur</strong>
-          <p>Sur la base de critères définis ensemble (budget, délai d'achat, situation financière, type de bien recherché, etc.), une IA analyse les réponses du lead et lui attribue une note de 1 à 5 — 5 étant un lead très chaud et 1 un lead peu qualifié. En fonction de cette note et d'autres critères de routing définis ensemble, le lead est automatiquement transmis par email au négociateur le plus adapté, avec l'ensemble de ses informations et sa note de qualification.</p>
+          <strong>Priorisation automatique et transmission au bon négociateur</strong>
+          <p>En fonction du score, le lead est transmis au négociateur avec une priorité de traitement claire :</p>
+          <ul style="margin-top:8px; padding-left:18px; display:flex; flex-direction:column; gap:3px;">
+            <li style="font-size:13px; color:var(--text-secondary);">Score 5 → appel immédiat (moins de 10 minutes)</li>
+            <li style="font-size:13px; color:var(--text-secondary);">Score 4 → rappel dans la journée</li>
+            <li style="font-size:13px; color:var(--text-secondary);">Score 1-2 → traitement secondaire</li>
+          </ul>
+          <p style="margin-top:8px; font-size:13px; color:var(--text-secondary);">Le négociateur reçoit par email ou SMS l'ensemble des informations collectées, le score attribué et le contexte complet pour rappeler efficacement. Les critères d'attribution au bon négociateur (par zone, par type de bien, par disponibilité…) seront définis ensemble dans le formulaire d'onboarding.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="flow-content">
+          <strong>Logique de prise de rendez-vous</strong>
+          <p>Dès la soumission du formulaire, le lead reçoit un message de confirmation qui l'invite à réserver directement un créneau de visite ou un rendez-vous téléphonique via un lien dédié, pour transformer la qualification en action concrète.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">6</div>
+        <div class="flow-content">
+          <strong>Séquence de relance en 3 temps</strong>
+          <p>Si le lead ne soumet pas le formulaire, une séquence de relance se déclenche automatiquement :</p>
+          <ul style="margin-top:8px; padding-left:18px; display:flex; flex-direction:column; gap:3px;">
+            <li style="font-size:13px; color:var(--text-secondary);">Relance 1 → 1h après le premier contact</li>
+            <li style="font-size:13px; color:var(--text-secondary);">Relance 2 → 24h après</li>
+            <li style="font-size:13px; color:var(--text-secondary);">Relance 3 → message "dernière opportunité" pour créer une urgence finale</li>
+          </ul>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">7</div>
+        <div class="flow-content">
+          <strong>Ton des messages</strong>
+          <p>L'ensemble des messages est rédigé dans un ton professionnel mais humain, réactif et dynamique, orienté service et efficacité, jamais robotique.</p>
         </div>
       </div>
     </div>
@@ -576,7 +622,7 @@
     <div class="feedback-block">
       <p>Cette solution vous convient-elle telle quelle, ou souhaitez-vous modifier ou adapter certains éléments avant qu'on démarre ?</p>
       <div class="feedback-btns">
-        <a href="#benefices" class="btn btn-primary">La solution me convient — je continue ✓</a>
+        <a href="#benefices" class="btn btn-primary">La solution me convient, je continue ✓</a>
         <a href="https://wa.me/33769892601?text=Bonjour%20Adam%2C%20j%27aimerais%20modifier%20certains%20%C3%A9l%C3%A9ments%20de%20la%20solution%20propos%C3%A9e." target="_blank" class="btn btn-ghost">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Je veux modifier quelque chose
@@ -617,7 +663,7 @@
         </div>
         <div>
           <p style="font-size:14px; font-weight:500; color:var(--text-primary); margin-bottom:3px;">Transmission automatique au bon négociateur</p>
-          <p style="font-size:13px; color:var(--text-secondary); line-height:1.55;">Le bon négociateur reçoit le lead avec toutes les infos et le contexte nécessaires pour rappeler efficacement — sans avoir à chercher, sans friction.</p>
+          <p style="font-size:13px; color:var(--text-secondary); line-height:1.55;">Le bon négociateur reçoit le lead avec toutes les infos et le contexte nécessaires pour rappeler efficacement, sans avoir à chercher, sans friction.</p>
         </div>
       </div>
 
@@ -663,7 +709,7 @@
       </div>
     </div>
 
-    <!-- ÉTAPE 4 — GRISÉE -->
+    <!-- ÉTAPE 4, GRISÉE -->
     <div class="step-row locked">
       <div class="step-indicator locked-icon">4</div>
       <div class="step-body">
