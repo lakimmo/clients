@@ -1,1 +1,807 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Espace Client — Unit Groupe × Lak. Agency</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #f5f5f3;
+      color: #1a1a18;
+      min-height: 100vh;
+      padding: 3rem 1rem;
+    }
+
+    .wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.07);
+      padding: 2.5rem;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      color: #1a1a18;
+      letter-spacing: -0.3px;
+    }
+
+    .logo em {
+      color: #E8621A;
+      font-style: normal;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .client-name {
+      font-size: 13px;
+      color: rgba(0,0,0,0.4);
+    }
+
+    .status-pill {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: #FFF0E8;
+      color: #B84D10;
+      border: 1px solid #F5C4A0;
+      letter-spacing: 0.3px;
+    }
+
+    /* HERO */
+    .hero {
+      margin-bottom: 2rem;
+    }
+
+    .hello {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #1a1a18;
+    }
+
+    .intro {
+      font-size: 14px;
+      color: rgba(0,0,0,0.5);
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    /* SUMMARY */
+    .summary {
+      background: #f9f9f7;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .summary-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(0,0,0,0.3);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .uc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .uc {
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .uc-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #E8621A;
+      min-width: 16px;
+      margin-top: 1px;
+    }
+
+    .uc-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: #1a1a18;
+      margin-bottom: 2px;
+    }
+
+    .uc-desc {
+      font-size: 11px;
+      color: rgba(0,0,0,0.45);
+      line-height: 1.5;
+    }
+
+    /* PRICING BLOCK */
+    .pricing-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-card {
+      background: #f9f9f7;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+    }
+
+    .pricing-card.highlight {
+      background: #FFF0E8;
+      border-color: #F5C4A0;
+    }
+
+    .pricing-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(0,0,0,0.35);
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .pricing-card.highlight .pricing-label {
+      color: #B84D10;
+    }
+
+    .pricing-amount {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a18;
+      margin-bottom: 3px;
+    }
+
+    .pricing-card.highlight .pricing-amount {
+      color: #E8621A;
+    }
+
+    .pricing-hint {
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+      line-height: 1.4;
+    }
+
+    /* DEADLINE */
+    .deadline-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f9f9f7;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .deadline-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .deadline-text {
+      font-size: 13px;
+      color: rgba(0,0,0,0.55);
+      line-height: 1.55;
+    }
+
+    .deadline-text strong {
+      color: #1a1a18;
+      font-weight: 500;
+    }
+
+    /* STEPS */
+    .steps-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      color: #1a1a18;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .steps-line {
+      position: absolute;
+      left: 16px;
+      top: 34px;
+      bottom: 34px;
+      width: 1px;
+      background: linear-gradient(to bottom, #E8621A 30%, rgba(0,0,0,0.08) 100%);
+      z-index: 0;
+    }
+
+    .step {
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: #ffffff;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .step-iban {
+      width: 100%;
+    }
+
+    .step:last-child {
+      margin-bottom: 0;
+    }
+
+    .step.active {
+      border-color: #E8621A;
+    }
+
+    .step.locked {
+      opacity: 0.72;
+      background: #fafaf8;
+    }
+
+    .step.final {
+      border-color: #E8621A;
+      border-style: dashed;
+      background: #FFF0E8;
+    }
+
+    .step-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #f5f5f3;
+      border: 1px solid rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(0,0,0,0.3);
+      flex-shrink: 0;
+    }
+
+    .step.active .step-num {
+      background: #E8621A;
+      border-color: #E8621A;
+      color: #ffffff;
+    }
+
+    .step.final .step-num {
+      background: #E8621A;
+      border-color: #E8621A;
+      color: #ffffff;
+    }
+
+    .step-body {
+      flex: 1;
+    }
+
+    .step-tag {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: rgba(0,0,0,0.3);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .step.active .step-tag {
+      color: #E8621A;
+    }
+
+    .step.final .step-tag {
+      color: #E8621A;
+    }
+
+    .step-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a18;
+      margin-bottom: 3px;
+    }
+
+    .step.locked .step-name {
+      color: rgba(0,0,0,0.5);
+    }
+
+    .step-hint {
+      font-size: 12px;
+      color: rgba(0,0,0,0.4);
+      line-height: 1.5;
+    }
+
+    .step.locked .step-hint {
+      color: rgba(0,0,0,0.3);
+    }
+
+    .step-action {
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: #1a1a18;
+      color: #ffffff;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      background: #333330;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: flex-end;
+    }
+
+    .iban-hint {
+      font-size: 10px;
+      color: rgba(0,0,0,0.3);
+      font-family: monospace;
+      letter-spacing: 0.3px;
+      text-align: right;
+    }
+
+    .lock-icon {
+      width: 16px;
+      height: 16px;
+      color: rgba(0,0,0,0.3);
+    }
+
+    /* COUNTDOWN */
+    .countdown {
+      background: #1a1a18;
+      border-radius: 12px;
+      padding: 1.5rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .countdown-left {}
+
+    .countdown-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .countdown-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .countdown-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.5;
+    }
+
+    .countdown-badge {
+      background: #E8621A;
+      color: #ffffff;
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0,0,0,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-brand {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #1a1a18;
+    }
+
+    .footer-brand em {
+      color: #E8621A;
+      font-style: normal;
+    }
+
+    .footer-credit {
+      font-size: 11px;
+      color: rgba(0,0,0,0.25);
+    }
+
+    /* CONSTRUCTION BRIDGE */
+    .construction-bridge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1.25rem;
+      margin-bottom: 8px;
+      opacity: 0.5;
+    }
+
+    .bridge-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 0;
+    }
+
+    .bridge-dots {
+      width: 1px;
+      height: 36px;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.2) 0px,
+        rgba(0,0,0,0.2) 4px,
+        transparent 4px,
+        transparent 10px
+      );
+    }
+
+    .bridge-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1rem 1.5rem;
+      background: #f9f9f7;
+      border: 1px dashed rgba(0,0,0,0.15);
+      border-radius: 12px;
+      width: 100%;
+    }
+
+    .bridge-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(0,0,0,0.3);
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .bridge-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a18;
+      margin-bottom: 4px;
+    }
+
+    .bridge-duration {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      color: #B84D10;
+      background: #FFF0E8;
+      border: 1px solid #F5C4A0;
+      border-radius: 20px;
+      padding: 3px 12px;
+      margin-bottom: 8px;
+    }
+
+    .bridge-hint {
+      font-size: 12px;
+      color: rgba(0,0,0,0.4);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 520px) {
+      .wrapper { padding: 1.5rem; }
+      .uc-grid { grid-template-columns: 1fr; }
+      .pricing-block { grid-template-columns: 1fr; }
+      .footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
+
+      .step {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .step-row {
+        width: 100%;
+      }
+
+      .step-action {
+        width: 100%;
+      }
+
+      .step-action .btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 13px 16px;
+        font-size: 14px;
+      }
+
+      .step-iban {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="logo">Agence Lak<em>.</em></div>
+      <div class="topbar-right">
+        <span class="client-name">Unit Groupe</span>
+        <span class="status-pill">Onboarding en cours</span>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hello">Bonjour Mehdi 👋</div>
+      <p class="intro">Merci pour ta confiance. Cet espace te permettra de suivre l'avancement du projet, se briefer, et rester alignés à chaque étape. Pour l'instant, il sert d'onboarding : tu n'as qu'à suivre les 3 premières étapes pour lancer la prestation. Simple, rapide, et on est partis.</p>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="summary">
+      <div class="summary-label">Ton projet — 4 solutions IA</div>
+      <div class="uc-grid">
+        <div class="uc">
+          <div class="uc-num">01</div>
+          <div>
+            <div class="uc-name">Agent CRM IA</div>
+            <div class="uc-desc">Acquisition et gestion des contacts centralisées</div>
+          </div>
+        </div>
+        <div class="uc">
+          <div class="uc-num">02</div>
+          <div>
+            <div class="uc-name">Veille IA</div>
+            <div class="uc-desc">Surveillance automatique des appels d'offres</div>
+          </div>
+        </div>
+        <div class="uc">
+          <div class="uc-num">03</div>
+          <div>
+            <div class="uc-name">Mise en forme documentaire</div>
+            <div class="uc-desc">CV, dossiers de compétences et devis automatisés</div>
+          </div>
+        </div>
+        <div class="uc">
+          <div class="uc-num">04</div>
+          <div>
+            <div class="uc-name">Automatisation Revolut</div>
+            <div class="uc-desc">Traitement et envoi des documents comptables</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="pricing-block">
+      <div class="pricing-card highlight">
+        <div class="pricing-label">Frais de lancement</div>
+        <div class="pricing-amount">1 000 €</div>
+        <div class="pricing-hint">HT · à régler au démarrage</div>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-label">À la livraison</div>
+        <div class="pricing-amount">300 €</div>
+        <div class="pricing-hint">HT · solde à réception des 4 solutions</div>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-label">Maintenance mensuelle</div>
+        <div class="pricing-amount">500 €</div>
+        <div class="pricing-hint">HT / mois · variable selon activité (voir contrat)</div>
+      </div>
+    </div>
+
+    <!-- DEADLINE -->
+    <div class="deadline-block">
+      <div class="deadline-icon">⏱</div>
+      <div class="deadline-text">
+        <strong>Livraison des 3 premiers use cases en 30 jours.</strong> Le chrono démarre dès que le contrat est signé, la facture réglée, le formulaire soumis et le briefing fait. Le 4e use case suit dans les 7 jours.
+      </div>
+    </div>
+
+    <!-- STEPS -->
+    <div class="steps-title">Roadmap</div>
+    <div class="steps">
+
+      <div class="step active">
+        <div class="step-row">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-tag">À faire maintenant</div>
+            <div class="step-name">Signer le contrat</div>
+            <div class="step-hint">Signature en ligne, moins d'une minute.</div>
+          </div>
+        </div>
+        <div class="step-action">
+          <a class="btn" href="https://agence-lak.odoo.com/sign/document/mail/7/2b1d0ad3-da40-4dab-8b71-cace27207033" target="_blank">Signer →</a>
+        </div>
+      </div>
+
+      <div class="step active">
+        <div class="step-row">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-tag">À faire maintenant</div>
+            <div class="step-name">Régler les frais de lancement</div>
+            <div class="step-hint">1 000 € HT</div>
+          </div>
+        </div>
+        <div class="step-action">
+          <a class="btn" href="https://invoice.stripe.com/i/acct_1TEVH3BUauZMC8bC/live_YWNjdF8xVEVWSDNCVWF1Wk1DOGJDLF9VUjJFRW1XYnZxSHNmTjlveFloUzBWWll3SUVUWlZ3LDE2ODE1NjI4OQ02000ddZCJHo?s=db" target="_blank">Payer par carte →</a>
+        </div>
+        <div class="step-iban">
+          <div style="background:#f9f9f7;border:1px solid rgba(0,0,0,0.07);border-radius:8px;padding:10px 12px;">
+            <div style="font-size:10px;font-weight:500;color:rgba(0,0,0,0.3);letter-spacing:0.6px;text-transform:uppercase;margin-bottom:5px;">Ou par virement</div>
+            <div style="font-family:monospace;font-size:12px;color:#1a1a18;font-weight:500;letter-spacing:0.5px;word-break:break-all;">FR76 2823 3000 0123 7276 6068 647</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step active">
+        <div class="step-row">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-tag">À faire maintenant</div>
+            <div class="step-name">Remplir le formulaire d'onboarding</div>
+            <div class="step-hint">Sois le plus précis possible dans tes réponses.</div>
+          </div>
+        </div>
+        <div class="step-action">
+          <a class="btn" href="https://agencelak.fillout.com/t/x1VJKrMre8us" target="_blank">Remplir →</a>
+        </div>
+      </div>
+
+      <div class="step locked">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-tag">Débloqué après étapes 1, 2 & 3</div>
+          <div class="step-name">Roadmap et plan concret</div>
+          <div class="step-hint">On définit ensemble le plan d'action détaillé sur chaque solution.</div>
+        </div>
+        <div class="step-action">
+          <svg class="lock-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="7" width="10" height="8" rx="2" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M5 7V5a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="step locked">
+        <div class="step-row">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <div class="step-tag">Débloqué après étape 4</div>
+            <div class="step-name">Briefing</div>
+            <div class="step-hint">Session de travail pour aligner tous les détails avant de démarrer.</div>
+          </div>
+        </div>
+        <div class="step-action">
+          <svg class="lock-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="7" width="10" height="8" rx="2" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M5 7V5a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CONSTRUCTION BRIDGE -->
+    <div class="construction-bridge">
+      <div class="bridge-line">
+        <div class="bridge-dots"></div>
+      </div>
+      <div class="bridge-content">
+        <div class="bridge-label">En cours de construction</div>
+        <div class="bridge-title">Construction</div>
+        <div class="bridge-duration">30 jours</div>
+        <div class="bridge-hint">On build et tu es tenu informé à chaque étape.</div>
+      </div>
+      <div class="bridge-line">
+        <div class="bridge-dots"></div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step final">
+        <div class="step-row">
+          <div class="step-num">🚀</div>
+          <div class="step-body">
+            <div class="step-tag">L'objectif final</div>
+            <div class="step-name">Livraison de tes 4 MVPs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COUNTDOWN -->
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-brand">Agence Lak<em>.</em></div>
+      <div class="footer-credit">Espace client créé pour Unit Groupe</div>
+    </div>
+
+  </div>
+</body>
+</html>
