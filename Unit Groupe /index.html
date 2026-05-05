@@ -17,7 +17,7 @@
     }
 
     .wrapper {
-      max-width: 680px;
+      max-width: 860px;
       margin: 0 auto;
       background: #ffffff;
       border-radius: 16px;
@@ -280,6 +280,18 @@
 
     .step:last-child {
       margin-bottom: 0;
+    }
+
+    .step.done {
+      border-color: #1a7a52;
+      background: #f0faf6;
+    }
+
+    .done-num {
+      background: #1a7a52 !important;
+      border-color: #1a7a52 !important;
+      color: #ffffff !important;
+      font-size: 16px !important;
     }
 
     .step.active {
@@ -699,23 +711,17 @@
         </div>
       </div>
 
-      <div class="step active">
+      <div class="step done">
         <div class="step-row">
-          <div class="step-num">2</div>
+          <div class="step-num done-num">✓</div>
           <div class="step-body">
-            <div class="step-tag">À faire maintenant</div>
-            <div class="step-name">Régler les frais de lancement</div>
-            <div class="step-hint">1 000 € HT</div>
+            <div class="step-tag" style="color:#1a7a52;">Payé ✓</div>
+            <div class="step-name">Frais de lancement réglés</div>
+            <div class="step-hint">1 000 € HT — paiement reçu.</div>
           </div>
         </div>
         <div class="step-action">
-          <a class="btn" href="https://invoice.stripe.com/i/acct_1TEVH3BUauZMC8bC/live_YWNjdF8xVEVWSDNCVWF1Wk1DOGJDLF9VUjJFRW1XYnZxSHNmTjlveFloUzBWWll3SUVUWlZ3LDE2ODE1NjI4OQ02000ddZCJHo?s=db" target="_blank">Payer par carte →</a>
-        </div>
-        <div class="step-iban">
-          <div style="background:#f9f9f7;border:1px solid rgba(0,0,0,0.07);border-radius:8px;padding:10px 12px;">
-            <div style="font-size:10px;font-weight:500;color:rgba(0,0,0,0.3);letter-spacing:0.6px;text-transform:uppercase;margin-bottom:5px;">Ou par virement</div>
-            <div style="font-family:monospace;font-size:12px;color:#1a1a18;font-weight:500;letter-spacing:0.5px;word-break:break-all;">FR76 2823 3000 0123 7276 6068 647</div>
-          </div>
+          <a class="btn outline" href="https://invoice.stripe.com/i/acct_1TEVH3BUauZMC8bC/live_YWNjdF8xVEVWSDNCVWF1Wk1DOGJDLF9VUjJFRW1XYnZxSHNmTjlveFloUzBWWll3SUVUWlZ3LDE2ODE1NjI4OQ02000ddZCJHo?s=db" target="_blank">Accéder à la facture →</a>
         </div>
       </div>
 
