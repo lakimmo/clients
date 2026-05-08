@@ -22,7 +22,7 @@
     .ob-section-label { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #f15a24; margin-bottom: 14px; }
     .ob-deliverables { margin-bottom: 36px; }
     .ob-deliverables-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-    @media (max-width: 560px) { .ob-deliverables-grid { grid-template-columns: 1fr; } .ob-header { padding: 20px; } .ob-body { padding: 20px; } .ob-pay-options { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) { .ob-deliverables-grid { grid-template-columns: 1fr; } .ob-header { padding: 20px; } .ob-body { padding: 20px; } }
     .ob-del-card { background: #fff; border: 1px solid #e8e4de; border-radius: 10px; padding: 16px 18px; transition: border-color 0.2s; }
     .ob-del-card:hover { border-color: #f15a24; }
     .ob-del-icon { width: 30px; height: 30px; background: rgba(241,90,36,0.09); border-radius: 7px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
@@ -32,8 +32,6 @@
     .ob-pricing-banner { background: #fff8f5; border: 1px solid #f15a24; border-radius: 10px; padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
     .ob-pricing-main { font-size: 13px; color: #888; }
     .ob-pricing-main strong { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 700; color: #f15a24; display: block; line-height: 1; margin-bottom: 3px; }
-    .ob-pricing-option { font-size: 12px; color: #666; background: #f5f3f0; border: 1px solid #e0dbd4; border-radius: 6px; padding: 5px 11px; }
-    .ob-pricing-option span { color: #1a1a1a; font-weight: 500; }
     .ob-badge-delivery { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #1a7a4a; background: rgba(26,122,74,0.08); border: 1px solid rgba(26,122,74,0.2); border-radius: 20px; padding: 4px 11px; }
     .ob-next-box { background: #fff; border: 1px solid #e8e4de; border-radius: 10px; padding: 18px 22px; margin-bottom: 14px; }
     .ob-next-title { font-family: 'Montserrat', sans-serif; font-size: 11px; color: #aaa; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 8px; text-transform: uppercase; }
@@ -41,35 +39,38 @@
     .ob-next-item:last-child { border-bottom: none; }
     .ob-next-dot { width: 6px; height: 6px; border-radius: 50%; background: #f15a24; flex-shrink: 0; margin-top: 6px; }
     .ob-steps { margin-bottom: 36px; }
-    .ob-step { display: flex; gap: 18px; position: relative; }
+    .ob-step { display: flex; gap: 18px; }
     .ob-step-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
     .ob-step-num { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; flex-shrink: 0; }
     .ob-step-num.active { background: #f15a24; color: #fff; }
+    .ob-step-num.done { background: #1a7a4a; color: #fff; font-size: 15px; }
     .ob-step-num.pending { background: #f0ece8; border: 1px solid #e0dbd4; color: #bbb; }
     .ob-step-line { width: 1px; flex: 1; min-height: 16px; background: #e0dbd4; margin: 5px 0; }
-    .ob-step-content { background: #fff; border: 1px solid #e8e4de; border-radius: 10px; padding: 16px 18px; flex: 1; margin-bottom: 10px; }
+    .ob-step-content { background: #fff; border: 1px solid #e8e4de; border-radius: 10px; padding: 14px 18px; flex: 1; margin-bottom: 10px; }
     .ob-step-content.highlight { border-color: #f9cdb8; }
-    .ob-step-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; flex-wrap: wrap; gap: 7px; }
+    .ob-step-content.done { border-color: #b8e4cc; background: #f5fff8; }
+    .ob-step-content.disabled { background: #f7f7f7; border-color: #e8e8e8; }
+    .ob-step-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 7px; }
     .ob-step-title { font-family: 'Montserrat', sans-serif; font-size: 13.5px; font-weight: 600; color: #1a1a1a; }
+    .ob-step-content.disabled .ob-step-title { color: #bbb; }
     .ob-step-badge { font-size: 10px; font-weight: 600; letter-spacing: 0.5px; padding: 3px 9px; border-radius: 20px; }
     .ob-step-badge.todo { background: rgba(241,90,36,0.1); color: #f15a24; }
-    .ob-step-badge.later { background: #f0ece8; color: #bbb; }
-    .ob-step-desc { font-size: 13px; color: #888; line-height: 1.65; margin-bottom: 4px; }
-    .ob-pay-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
-    .ob-pay-card { border: 1px solid #e8e4de; border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
-    .ob-pay-card-label { font-size: 11px; color: #aaa; font-weight: 500; }
-    .ob-pay-card-price { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: #1a1a1a; }
-    .ob-pay-card-desc { font-size: 11.5px; color: #bbb; }
-    .ob-cta { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 14px; border-radius: 7px; font-size: 12.5px; font-weight: 500; cursor: pointer; text-decoration: none; transition: opacity 0.2s; width: 100%; }
-    .ob-cta.primary { background: #f15a24; color: #fff; }
-    .ob-cta.primary:hover { opacity: 0.88; }
-    .ob-cta.secondary { background: transparent; border: 1px solid #f15a24; color: #f15a24; }
-    .ob-cta.secondary:hover { background: rgba(241,90,36,0.06); }
-    .ob-cta-single { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 8px 16px; border-radius: 7px; font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
+    .ob-step-badge.done-badge { background: rgba(26,122,74,0.1); color: #1a7a4a; }
+    .ob-step-badge.later { background: #efefef; color: #bbb; }
+    .ob-cta-single { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 7px 14px; border-radius: 7px; font-size: 12.5px; font-weight: 500; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
     .ob-cta-single.primary { background: #f15a24; color: #fff; }
     .ob-cta-single.primary:hover { opacity: 0.88; }
-    .ob-cta-single.secondary { background: transparent; border: 1px solid #f15a24; color: #f15a24; }
-    .ob-cta-single.secondary:hover { background: rgba(241,90,36,0.06); }
+    .ob-cta-single.outline-green { background: transparent; border: 1px solid #1a7a4a; color: #1a7a4a; }
+    .ob-cta-single.outline-green:hover { background: rgba(26,122,74,0.06); }
+    .shopify-steps { margin-top: 12px; list-style: none; }
+    .shopify-steps li { display: flex; gap: 10px; align-items: flex-start; padding: 6px 0; font-size: 13px; color: #555; line-height: 1.5; border-bottom: 1px solid #f0ece8; }
+    .shopify-steps li:last-child { border-bottom: none; }
+    .shopify-steps .sn { width: 20px; height: 20px; border-radius: 50%; background: #f15a24; color: #fff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .shopify-steps a { color: #f15a24; text-decoration: none; }
+    .shopify-steps a:hover { text-decoration: underline; }
+    .shopify-note { margin-top: 10px; font-size: 12px; color: #aaa; font-style: italic; }
+    .ob-construction { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 10px 14px; background: #f0f0f0; border-radius: 7px; }
+    .ob-construction span { font-size: 12px; color: #bbb; }
   </style>
 </head>
 <body>
@@ -87,7 +88,7 @@
   <div class="ob-body">
 
     <div class="ob-intro-card">
-      <p>Bonjour Laurent, ravi de travailler avec toi sur ce projet ! Voici un résumé clair de <strong>ce qu'on va faire ensemble</strong>, puis les prochaines étapes pour démarrer. Tout est organisé ici pour que tu aies une vision nette du projet dès le départ.</p>
+      <p>Bonjour Laurent, ravi de travailler avec toi sur ce projet ! Voici un résumé clair de <strong>ce qu'on va faire ensemble</strong>, puis les prochaines étapes pour démarrer.</p>
     </div>
 
     <div class="ob-deliverables">
@@ -95,8 +96,8 @@
       <div class="ob-deliverables-grid">
         <div class="ob-del-card">
           <div class="ob-del-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f15a24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg></div>
-          <div class="ob-del-title">Refonte complète de la boutique Shopify + logo</div>
-          <div class="ob-del-desc">Design moderne, plus percutant, pensé pour convertir. On repart sur une base propre.</div>
+          <div class="ob-del-title">Refonte complète boutique Shopify + logo</div>
+          <div class="ob-del-desc">Design moderne, pensé pour convertir. On repart sur une base propre.</div>
         </div>
         <div class="ob-del-card">
           <div class="ob-del-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f15a24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
@@ -120,11 +121,9 @@
           <strong>400 €</strong>
           Livraison garantie en moins de 7 jours
         </div>
-        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;">
-          <div class="ob-badge-delivery">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            &lt; 7 jours
-          </div>
+        <div class="ob-badge-delivery">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          &lt; 7 jours
         </div>
       </div>
 
@@ -139,78 +138,120 @@
     <div class="ob-steps">
       <div class="ob-section-label">Prochaines étapes</div>
 
+      <!-- 1 - Devis DONE -->
       <div class="ob-step">
         <div class="ob-step-left">
-          <div class="ob-step-num active">1</div>
+          <div class="ob-step-num done">✓</div>
           <div class="ob-step-line"></div>
         </div>
-        <div class="ob-step-content highlight">
+        <div class="ob-step-content done">
           <div class="ob-step-header">
             <div class="ob-step-title">Consulter le devis</div>
-            <div class="ob-step-badge todo">À faire</div>
+            <div class="ob-step-badge done-badge">Consulté</div>
           </div>
-          <div class="ob-step-desc">Prends le temps de lire le devis en détail. Tout ce qu'on va livrer est listé dessus, ainsi que le tarif et les conditions. Des questions avant de valider ? On peut en discuter directement.</div>
-          <a class="ob-cta-single primary" href="https://drive.google.com/file/d/1S-Yz-jLkJiYgd1A4CapjoQgTA5dHDDY1/view?usp=sharing" target="_blank">
+          <a class="ob-cta-single outline-green" href="https://drive.google.com/file/d/1S-Yz-jLkJiYgd1A4CapjoQgTA5dHDDY1/view?usp=sharing" target="_blank">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            Voir le devis
+            Accéder au devis
           </a>
         </div>
       </div>
 
+      <!-- 2 - Facture DONE -->
       <div class="ob-step">
         <div class="ob-step-left">
-          <div class="ob-step-num active">2</div>
+          <div class="ob-step-num done">✓</div>
           <div class="ob-step-line"></div>
         </div>
-        <div class="ob-step-content highlight">
+        <div class="ob-step-content done">
           <div class="ob-step-header">
-            <div class="ob-step-title">Régler la facture</div>
-            <div class="ob-step-badge todo">À faire</div>
+            <div class="ob-step-title">Acompte réglé — 200 €</div>
+            <div class="ob-step-badge done-badge">Payé</div>
           </div>
-          <div class="ob-step-desc">Un acompte de 50% (200 €) est demandé avant le démarrage des travaux. Le solde de 200 € sera réglé à la livraison.</div>
-          <a class="ob-cta-single primary" href="https://invoice.stripe.com/i/acct_1TEVH3BUauZMC8bC/live_YWNjdF8xVEVWSDNCVWF1Wk1DOGJDLF9VTFNEWmV4aEJqWXF4c1J2TXpZV0hwYVZlRjh3Y1dYLDE2Njg2OTM1MA0200RcgdQTK2?s=db" target="_blank">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-            Payer acompte 200 €
+          <a class="ob-cta-single outline-green" href="https://drive.google.com/file/d/1KIANMeg5rqce5OHQ4nZM8lJQVAGBCvK6/view?usp=sharing" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Télécharger la facture d'acompte
           </a>
         </div>
       </div>
 
+      <!-- 3 - Contrat DONE -->
       <div class="ob-step">
         <div class="ob-step-left">
-          <div class="ob-step-num active">3</div>
+          <div class="ob-step-num done">✓</div>
           <div class="ob-step-line"></div>
         </div>
-        <div class="ob-step-content highlight">
+        <div class="ob-step-content done">
           <div class="ob-step-header">
-            <div class="ob-step-title">Signer le contrat</div>
-            <div class="ob-step-badge todo">À faire</div>
+            <div class="ob-step-title">Contrat signé</div>
+            <div class="ob-step-badge done-badge">Signé</div>
           </div>
-          <div class="ob-step-desc">La signature électronique prend moins de 2 minutes. Elle formalise notre collaboration et te protège autant que moi.</div>
-          <a class="ob-cta-single secondary" href="https://agence-lak.odoo.com/sign/document/mail/2/c3af9d1f-693a-4dc2-86ae-f0a350539330" target="_blank">
+          <a class="ob-cta-single outline-green" href="https://agence-lak.odoo.com/sign/document/mail/2/c3af9d1f-693a-4dc2-86ae-f0a350539330" target="_blank">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-            Signer en ligne
+            Accéder au contrat
           </a>
         </div>
       </div>
 
+      <!-- 4 - Formulaire brief -->
       <div class="ob-step">
         <div class="ob-step-left">
-          <div class="ob-step-num pending">4</div>
+          <div class="ob-step-num active">4</div>
+          <div class="ob-step-line"></div>
         </div>
-        <div class="ob-step-content">
+        <div class="ob-step-content highlight">
           <div class="ob-step-header">
-            <div class="ob-step-title">Accès Shopify & appel de brief</div>
-            <div class="ob-step-badge later">Après validation</div>
+            <div class="ob-step-title">Remplir le formulaire de brief</div>
+            <div class="ob-step-badge todo">À faire</div>
           </div>
-          <div class="ob-step-desc">Une fois les étapes 2 et 3 complétées, je t'enverrai les instructions pour me donner accès à ta boutique Shopify.</div>
-          <div class="ob-step-desc" style="margin-top: 8px;">On réservera aussi un créneau téléphone ensemble pour définir exactement ce que tu veux et qu'on se brief sur tout cela avant de démarrer.</div>
+          <a class="ob-cta-single primary" href="https://agencelak.fillout.com/t/jc8WfVUh3bus" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Remplir le formulaire
+          </a>
+        </div>
+      </div>
+
+      <!-- 5 - Accès Shopify -->
+      <div class="ob-step">
+        <div class="ob-step-left">
+          <div class="ob-step-num active">5</div>
+          <div class="ob-step-line"></div>
+        </div>
+        <div class="ob-step-content highlight">
+          <div class="ob-step-header">
+            <div class="ob-step-title">Donner accès à ta boutique Shopify</div>
+            <div class="ob-step-badge todo">À faire</div>
+          </div>
+          <ol class="shopify-steps">
+            <li><span class="sn">1</span>Connecte-toi sur <a href="https://admin.shopify.com" target="_blank">admin.shopify.com</a></li>
+            <li><span class="sn">2</span>Va dans <strong>Paramètres → Utilisateurs</strong></li>
+            <li><span class="sn">3</span>Clique sur <strong>Ajouter des utilisateurs</strong></li>
+            <li><span class="sn">4</span>Entre l'adresse email : <a href="mailto:mindia.agency@gmail.com">mindia.agency@gmail.com</a></li>
+            <li><span class="sn">5</span>Clique sur <strong>Ajouter</strong> pour envoyer l'invitation</li>
+          </ol>
+          <p class="shopify-note">Je recevrai un email pour accepter l'accès et je te confirme dès que c'est bon.</p>
+        </div>
+      </div>
+
+      <!-- 6 - En construction -->
+      <div class="ob-step">
+        <div class="ob-step-left">
+          <div class="ob-step-num pending">6</div>
+        </div>
+        <div class="ob-step-content disabled">
+          <div class="ob-step-header">
+            <div class="ob-step-title">Suivi & livraison</div>
+            <div class="ob-step-badge later">En construction</div>
+          </div>
+          <div class="ob-construction">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Cette section sera disponible prochainement.</span>
+          </div>
         </div>
       </div>
 
     </div>
 
   </div>
-
 
 </body>
 </html>
