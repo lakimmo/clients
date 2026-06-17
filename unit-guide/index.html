@@ -197,26 +197,32 @@
     .step-content p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
 
     /* VIDEO EMBED */
-    .video-embed-box {
-      background: var(--dark);
+    .video-embed-wrapper {
+      margin-bottom: 24px;
+    }
+    .video-embed-title-bar {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 10px;
+    }
+    .video-embed-clip {
       border-radius: 16px;
       overflow: hidden;
-      margin-bottom: 24px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      border: 1px solid var(--grey-border);
+      background: #000;
+      position: relative;
+      /* Loom ratio réel avec barre du bas */
+      aspect-ratio: 16 / 10.5;
     }
-    .video-embed-label {
-      padding: 14px 20px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .video-embed-dot {
-      width: 8px; height: 8px; border-radius: 50%; background: var(--orange);
-    }
-    .video-embed-title { color: white; font-size: 13px; font-weight: 600; }
-    .video-embed-sub { color: rgba(255,255,255,0.4); font-size: 12px; margin-left: auto; }
-    .video-embed-box iframe {
-      display: block;
+    .video-embed-clip iframe {
+      position: absolute;
+      top: 0; left: 0;
       width: 100%;
-      height: 480px;
+      height: 100%;
       border: none;
     }
 
@@ -310,7 +316,6 @@
     .tag-veille { background: #EDE9FE; color: #5B21B6; }
     .tag-crm { background: #DCFCE7; color: #166534; }
     .tag-feedback { background: var(--orange-pale); color: var(--orange-dark); }
-
     /* TOC */
     .toc {
       background: white; border: 1px solid var(--grey-border);
@@ -354,7 +359,7 @@
       .header-inner { padding: 14px 16px; }
       .hero { padding: 56px 16px 80px; }
       .intro-banner { padding: 28px 24px; }
-      .video-embed-box iframe { height: 240px; }
+      .video-embed-box { border-radius: 12px; }
     }
   </style>
 </head>
@@ -394,7 +399,7 @@
     <div class="intro-banner-grid">
       <div>
         <h2>Bienvenue sur votre application IA 🎉</h2>
-        <p>Vous allez recevoir votre accès par invitation. Cette application est le fruit de plusieurs semaines de développement en collaboration avec vos équipes. Elle se compose de deux modules principaux : <strong>Scraping IA</strong> pour le sourcing de candidats et <strong>Veille IA</strong> pour la surveillance des appels d'offres.<br><br>Nous sommes ici sur la <strong>V1 de l'application</strong>. Des bugs et des résultats parfois inconsistants peuvent apparaître, c'est tout à fait normal à ce stade. Vos retours sont essentiels pour qu'on améliore ensemble l'application et qu'au bout de quelques mois vous disposiez d'un outil pleinement opérationnel, qui vous fera gagner un temps considérable.</p>
+        <p>Vous allez recevoir votre accès par invitation. Elle se compose de deux modules principaux : <strong>Scraping IA</strong> pour le sourcing de candidats et <strong>Veille IA</strong> pour la surveillance des appels d'offres.<br><br>Nous sommes ici sur la <strong>V1 de l'application</strong>. Des bugs et des résultats parfois inconsistants peuvent apparaître, c'est tout à fait normal à ce stade. Vos retours sont essentiels pour qu'on améliore ensemble l'application et qu'au bout de quelques mois vous disposiez d'un outil pleinement opérationnel, qui vous fera gagner un temps considérable.</p>
       </div>
       <div class="intro-stats">
         <div class="intro-stat">
@@ -484,13 +489,11 @@
     <div class="section-title">Recherche de <span>candidats</span></div>
     <p class="section-sub">Lancez votre premier scraping en quelques clics. La vidéo ci-dessous vous guide pas à pas sur le fonctionnement de la recherche.</p>
 
-    <div class="video-embed-box">
-      <div class="video-embed-label">
-        <div class="video-embed-dot"></div>
-        <span class="video-embed-title">Tutoriel Recherche candidats</span>
-        <span class="video-embed-sub">Filtres, sources, lancement et résultats</span>
+    <div class="video-embed-wrapper">
+      <div class="video-embed-title-bar">Tutoriel Recherche candidats &nbsp;·&nbsp; x1.2</div>
+      <div class="video-embed-clip">
+        <iframe src="https://www.loom.com/embed/c5dde3f8f05644bd84e00b80f0d81232" allowfullscreen></iframe>
       </div>
-      <iframe src="https://www.loom.com/embed/c5dde3f8f05644bd84e00b80f0d81232" allowfullscreen></iframe>
     </div>
 
     <div class="steps">
@@ -534,12 +537,12 @@
     <div class="mode-toggle">
       <div class="mode-card active">
         <span class="mode-badge simple">✅ Simple</span>
-        <h4>Mode Simple — Recommandé pour débuter</h4>
+        <h4>Mode Simple Recommandé pour débuter</h4>
         <p>Vous décrivez votre besoin en français courant. L'IA génère automatiquement l'équation booléenne optimale pour la plateforme choisie. Aucune connaissance technique requise.</p>
       </div>
       <div class="mode-card">
         <span class="mode-badge expert">🔧 Expert</span>
-        <h4>Mode Expert — Pour les utilisateurs avancés</h4>
+        <h4>Mode Expert Pour les utilisateurs avancés</h4>
         <p>Vous saisissez directement votre équation booléenne. Idéal si vous maîtrisez précisément les opérateurs et que vous souhaitez contrôler exactement la requête envoyée à la plateforme.</p>
       </div>
     </div>
@@ -581,7 +584,7 @@
 
     <div class="callout orange">
       <span class="callout-icon">💡</span>
-      <div>En Mode Expert, l'équation booléenne que vous saisissez est envoyée telle quelle à la plateforme. Vérifiez la syntaxe (parenthèses, opérateurs AND/OR) pour éviter des résultats inattendus.</div>
+      <div>En Mode Expert, l'équation booléenne que vous saisissez est envoyée telle quelle à la plateforme. Vérifiez la syntaxe (parenthèses, opérateurs AND/OR) et n'utilisez pas de guillemets dans vos termes de recherche, au risque d'obtenir des résultats inattendus.</div>
     </div>
   </div>
 
@@ -595,13 +598,11 @@
 
     <div style="margin-bottom: 12px; font-size: 14px; font-weight: 700; color: var(--dark);">Étape 1 Qualifier vos résultats et lancer l'enrichissement</div>
 
-    <div class="video-embed-box" style="margin-bottom: 28px;">
-      <div class="video-embed-label">
-        <div class="video-embed-dot"></div>
-        <span class="video-embed-title">Tutoriel Enrichissement candidats</span>
-        <span class="video-embed-sub">Catégoriser les résultats et lancer l'enrichissement</span>
+    <div class="video-embed-wrapper" style="margin-bottom: 28px;">
+      <div class="video-embed-title-bar">Tutoriel Enrichissement candidats &nbsp;·&nbsp; x1.2</div>
+      <div class="video-embed-clip">
+        <iframe src="https://www.loom.com/embed/b328610939b249d288fd7a7f57fecba0" allowfullscreen></iframe>
       </div>
-      <iframe src="https://www.loom.com/embed/b328610939b249d288fd7a7f57fecba0" allowfullscreen></iframe>
     </div>
 
     <p style="font-size: 15px; color: var(--text); margin-bottom: 16px;">Après chaque scraping, les candidats remontés apparaissent dans le CRM. Vous pouvez les qualifier en leur attribuant un statut :</p>
@@ -637,13 +638,11 @@
 
     <div style="margin-bottom: 12px; font-size: 14px; font-weight: 700; color: var(--dark);">Étape 2 Gérer votre CRM</div>
 
-    <div class="video-embed-box" style="margin-bottom: 28px;">
-      <div class="video-embed-label">
-        <div class="video-embed-dot"></div>
-        <span class="video-embed-title">Tutoriel CRM complet</span>
-        <span class="video-embed-sub">Vues, filtres, notes et gestion des statuts</span>
+    <div class="video-embed-wrapper" style="margin-bottom: 28px;">
+      <div class="video-embed-title-bar">Tutoriel CRM complet &nbsp;·&nbsp; x1.2</div>
+      <div class="video-embed-clip">
+        <iframe src="https://www.loom.com/embed/3b117426ea0c484081e996c033bae98b" allowfullscreen></iframe>
       </div>
-      <iframe src="https://www.loom.com/embed/3b117426ea0c484081e996c033bae98b" allowfullscreen></iframe>
     </div>
 
     <div class="cards-grid">
@@ -731,13 +730,11 @@
       </div>
     </div>
 
-    <div class="video-embed-box" style="margin-bottom: 24px;">
-      <div class="video-embed-label">
-        <div class="video-embed-dot"></div>
-        <span class="video-embed-title">Tutoriel Veille IA complète</span>
-        <span class="video-embed-sub">Configuration d'une veille et consultation des opportunités</span>
+    <div class="video-embed-wrapper" style="margin-bottom: 24px;">
+      <div class="video-embed-title-bar">Tutoriel Veille IA complète &nbsp;·&nbsp; x1.2</div>
+      <div class="video-embed-clip">
+        <iframe src="https://www.loom.com/embed/dce35b7a8d464d4b809087c9bbe31ebe" allowfullscreen></iframe>
       </div>
-      <iframe src="https://www.loom.com/embed/dce35b7a8d464d4b809087c9bbe31ebe" allowfullscreen></iframe>
     </div>
 
     <div class="callout success">
@@ -756,13 +753,11 @@
     <div class="section-title">Feedbacks <span>et Bugs</span></div>
     <p class="section-sub">Vos retours sont le moteur de l'amélioration de l'application. Plus vous nous signalez, plus on avance vite.</p>
 
-    <div class="video-embed-box" style="margin-bottom: 28px;">
-      <div class="video-embed-label">
-        <div class="video-embed-dot"></div>
-        <span class="video-embed-title">Tutoriel Comment faire un feedback</span>
-        <span class="video-embed-sub">Signaler un bug, soumettre une idée ou donner un retour</span>
+    <div class="video-embed-wrapper" style="margin-bottom: 28px;">
+      <div class="video-embed-title-bar">Tutoriel Comment faire un feedback &nbsp;·&nbsp; x1.2</div>
+      <div class="video-embed-clip">
+        <iframe src="https://www.loom.com/embed/1d021ad9fc5b4c94813e98278f8b17be" allowfullscreen></iframe>
       </div>
-      <iframe src="https://www.loom.com/embed/1d021ad9fc5b4c94813e98278f8b17be" allowfullscreen></iframe>
     </div>
 
     <div class="cards-grid">
@@ -796,32 +791,15 @@
 
     <div class="callout info">
       <span class="callout-icon">📅</span>
-      <div>Utilisez l'application normalement dans le cadre de vos activités quotidiennes. L'objectif n'est pas de tout tester en une fois, mais d'accumuler des retours réels sur plusieurs semaines. La liste ci-dessous vous guide sur les points de vigilance prioritaires.</div>
+      <div>Utilisez l'application normalement dans le cadre de vos activités quotidiennes. L'objectif n'est pas de tout tester en une fois, mais d'accumuler des retours réels sur plusieurs semaines. Voici les points à confirmer et surveiller :</div>
     </div>
 
-    <div style="font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 16px;">🔍 Scraping IA</div>
     <div class="test-list">
       <div class="test-item">
         <div class="test-check"></div>
         <div class="test-item-content">
-          <strong>Recherche simple profil généraliste</strong>
-          <span>Lancez une recherche en mode Simple sur un profil courant (ex : Chef de projet, Ingénieur BIM) et évaluez la pertinence des candidats remontés.</span>
-        </div>
-        <span class="test-item-tag tag-scraping">Scraping</span>
-      </div>
-      <div class="test-item">
-        <div class="test-check"></div>
-        <div class="test-item-content">
-          <strong>Recherche simple profil niche</strong>
-          <span>Testez avec un profil très spécialisé (ex : Ingénieur Système OCTYS, AMO LGV) pour voir comment l'IA adapte l'équation sur des recherches pointues.</span>
-        </div>
-        <span class="test-item-tag tag-scraping">Scraping</span>
-      </div>
-      <div class="test-item">
-        <div class="test-check"></div>
-        <div class="test-item-content">
-          <strong>Mode Expert équation manuelle</strong>
-          <span>Essayez le mode Expert avec une équation booléenne que vous maîtrisez et comparez les résultats obtenus vs le mode Simple sur la même recherche.</span>
+          <strong>Scraping</strong>
+          <span>Effectuez un maximum de tests sur des profils variés larges, niche, intermédiaires en mode Simple et Expert. Confirmez la cohérence, la qualité et la constance des résultats ainsi que la pertinence du scoring et de la justification IA.</span>
         </div>
         <span class="test-item-tag tag-scraping">Scraping</span>
       </div>
@@ -829,101 +807,33 @@
         <div class="test-check"></div>
         <div class="test-item-content">
           <strong>Enrichissement candidats</strong>
-          <span>Sélectionnez 5 à 10 candidats et lancez l'enrichissement. Vérifiez la qualité des données récupérées (email, téléphone) et signalez si certains profils ne sont pas enrichis.</span>
+          <span>Vérifiez que l'enrichissement remonte bien les coordonnées (email, téléphone) de manière fonctionnelle et fiable.</span>
         </div>
         <span class="test-item-tag tag-scraping">Scraping</span>
       </div>
       <div class="test-item">
         <div class="test-check"></div>
         <div class="test-item-content">
-          <strong>Sources croisées APEC et LinkedIn</strong>
-          <span>Lancez une même recherche sur APEC et LinkedIn simultanément et comparez la qualité, la quantité et la pertinence des résultats par source.</span>
-        </div>
-        <span class="test-item-tag tag-scraping">Scraping</span>
-      </div>
-    </div>
-
-    <div style="font-size: 15px; font-weight: 700; color: var(--dark); margin: 24px 0 16px;">📊 CRM candidats</div>
-    <div class="test-list">
-      <div class="test-item">
-        <div class="test-check"></div>
-        <div class="test-item-content">
-          <strong>Catégorisation des profils</strong>
-          <span>Après un scraping, catégorisez une dizaine de profils (à enrichir / non pertinent / blacklisté) et vérifiez que les statuts sont bien persistés après rafraîchissement.</span>
+          <strong>CRM candidats</strong>
+          <span>L'expérience doit être fluide, sans bug, et intuitive. Notez tout ce qui mériterait d'être ajouté ou adapté pour coller à votre façon de travailler.</span>
         </div>
         <span class="test-item-tag tag-crm">CRM</span>
       </div>
       <div class="test-item">
         <div class="test-check"></div>
         <div class="test-item-content">
-          <strong>Comportement des blacklistés</strong>
-          <span>Vérifiez qu'un profil blacklisté ne réapparaît pas dans les recherches suivantes. Signalez si un profil blacklisté remonte à nouveau.</span>
-        </div>
-        <span class="test-item-tag tag-crm">CRM</span>
-      </div>
-    </div>
-
-    <div style="font-size: 15px; font-weight: 700; color: var(--dark); margin: 24px 0 16px;">📡 Veille IA</div>
-    <div class="test-list">
-      <div class="test-item">
-        <div class="test-check"></div>
-        <div class="test-item-content">
-          <strong>Création d'une veille BOAMP</strong>
-          <span>Créez une veille sur votre domaine principal (ex : infrastructure ferroviaire MOE/AMO) avec fréquence quotidienne et score minimum 60. Évaluez la pertinence des premiers AO remontés.</span>
+          <strong>Veille IA</strong>
+          <span>Créez vos veilles et évaluez la qualité et la constance des AO remontés, ainsi que la pertinence du scoring et de la justification IA sur chaque opportunité.</span>
         </div>
         <span class="test-item-tag tag-veille">Veille</span>
       </div>
       <div class="test-item">
         <div class="test-check"></div>
         <div class="test-item-content">
-          <strong>Création d'une veille TED Europa</strong>
-          <span>Testez la même recherche sur TED pour comparer la couverture européenne vs française. Notez les différences de résultats et de qualité de scoring.</span>
+          <strong>Général</strong>
+          <span>L'application dans son ensemble doit être fluide, sans bug et fonctionnelle. Signalez tout comportement inattendu via la section Feedbacks.</span>
         </div>
-        <span class="test-item-tag tag-veille">Veille</span>
-      </div>
-      <div class="test-item">
-        <div class="test-check"></div>
-        <div class="test-item-content">
-          <strong>Pertinence du score IA</strong>
-          <span>Sur les AO remontés, vérifiez si le score attribué par l'IA correspond à votre propre évaluation. Signalez les AO sur ou sous-scorés via le feedback intégré.</span>
-        </div>
-        <span class="test-item-tag tag-veille">Veille</span>
-      </div>
-      <div class="test-item">
-        <div class="test-check"></div>
-        <div class="test-item-content">
-          <strong>Doublons inter-sources</strong>
-          <span>Vérifiez si un même AO peut apparaître à la fois dans BOAMP et TED. Signalez tout doublon observé.</span>
-        </div>
-        <span class="test-item-tag tag-veille">Veille</span>
-      </div>
-    </div>
-
-    <div style="font-size: 15px; font-weight: 700; color: var(--dark); margin: 24px 0 16px;">💬 Feedbacks et Général</div>
-    <div class="test-list">
-      <div class="test-item">
-        <div class="test-check"></div>
-        <div class="test-item-content">
-          <strong>Faire un premier feedback</strong>
-          <span>Testez la fonctionnalité de feedback en soumettant un retour (bug fictif ou réel, idée d'amélioration) pour vous familiariser avec l'interface.</span>
-        </div>
-        <span class="test-item-tag tag-feedback">Feedback</span>
-      </div>
-      <div class="test-item">
-        <div class="test-check"></div>
-        <div class="test-item-content">
-          <strong>Navigation et ergonomie</strong>
-          <span>Notez tout ce qui vous semble peu intuitif, lent ou peu clair dans l'interface. Ces retours qualitatifs sont aussi précieux que les rapports de bugs.</span>
-        </div>
-        <span class="test-item-tag tag-feedback">Feedback</span>
-      </div>
-      <div class="test-item">
-        <div class="test-check"></div>
-        <div class="test-item-content">
-          <strong>Performance et temps de réponse</strong>
-          <span>Notez les temps d'attente sur les scrapings et les chargements de page. Si certaines opérations vous semblent trop lentes, signalez-le avec les détails du contexte.</span>
-        </div>
-        <span class="test-item-tag tag-feedback">Feedback</span>
+        <span class="test-item-tag tag-feedback">Général</span>
       </div>
     </div>
 
