@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guide d'utilisation Application Unit Groupe</title>
+  <style>
+    :root {
+      --orange: #FF6B2B;
+      --orange-light: #FF8C55;
+      --orange-pale: #FFF0E8;
+      --orange-dark: #E04E10;
+      --dark: #1A1A2E;
+      --dark-2: #16213E;
+      --grey: #6B7280;
+      --grey-light: #F3F4F6;
+      --grey-border: #E5E7EB;
+      --white: #FFFFFF;
+      --text: #1F2937;
+      --text-light: #6B7280;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --info: #3B82F6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+      color: var(--text);
+      background: #FAFAFA;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    .header {
+      background: var(--dark);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-logo { display: flex; align-items: center; gap: 12px; }
+    .header-logo-dot {
+      width: 32px; height: 32px;
+      background: var(--orange);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; color: white; font-size: 14px; letter-spacing: -1px;
+    }
+    .header-logo-text { font-size: 15px; font-weight: 700; color: white; letter-spacing: 0.5px; }
+    .header-logo-text span { color: var(--orange); }
+    .header-badge {
+      background: rgba(255,107,43,0.15);
+      border: 1px solid rgba(255,107,43,0.3);
+      color: var(--orange-light);
+      font-size: 11px; font-weight: 600;
+      padding: 4px 10px; border-radius: 20px;
+      letter-spacing: 0.5px; text-transform: uppercase;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-2) 60%, #0F3460 100%);
+      padding: 80px 32px 100px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,107,43,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -80px; left: -80px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(255,107,43,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,107,43,0.2); border: 1px solid rgba(255,107,43,0.4);
+      color: var(--orange-light); font-size: 12px; font-weight: 700;
+      padding: 6px 16px; border-radius: 30px; margin-bottom: 24px;
+      letter-spacing: 1px; text-transform: uppercase;
+    }
+    .hero h1 { font-size: 48px; font-weight: 800; color: white; line-height: 1.15; margin-bottom: 20px; letter-spacing: -1px; }
+    .hero h1 span { color: var(--orange); }
+    .hero-sub { font-size: 18px; color: rgba(255,255,255,0.65); max-width: 600px; margin: 0 auto 40px; line-height: 1.7; }
+    .hero-pills { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .hero-pill {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.8); padding: 8px 18px; border-radius: 30px;
+      font-size: 13px; font-weight: 500;
+    }
+    .hero-pill .dot {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--orange); margin-right: 7px; vertical-align: middle;
+    }
+
+    /* LAYOUT */
+    .page { max-width: 1100px; margin: 0 auto; padding: 0 32px 80px; }
+
+    /* INTRO BANNER */
+    .intro-banner {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+      border-radius: 20px; padding: 40px 48px;
+      margin: -40px 0 60px; position: relative; z-index: 2;
+      box-shadow: 0 20px 60px rgba(255,107,43,0.3);
+    }
+    .intro-banner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .intro-banner h2 { font-size: 26px; font-weight: 800; color: white; margin-bottom: 12px; line-height: 1.3; }
+    .intro-banner p { color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.7; }
+    .intro-stats { display: flex; flex-direction: column; gap: 12px; }
+    .intro-stat {
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px; padding: 12px 16px;
+      display: flex; align-items: center; gap: 12px; color: white;
+    }
+    .intro-stat-icon { font-size: 20px; }
+    .intro-stat-text { font-size: 13px; font-weight: 500; }
+
+    /* SECTION TITLE */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange-pale); border: 1px solid rgba(255,107,43,0.2);
+      color: var(--orange-dark); font-size: 11px; font-weight: 700;
+      padding: 5px 12px; border-radius: 20px;
+      text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;
+    }
+    .section-title { font-size: 34px; font-weight: 800; color: var(--dark); margin-bottom: 8px; letter-spacing: -0.5px; }
+    .section-title span { color: var(--orange); }
+    .section-sub { font-size: 16px; color: var(--text-light); margin-bottom: 40px; max-width: 600px; }
+
+    /* PART HEADER */
+    .part-header {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: white; border: 1px solid var(--grey-border);
+      border-radius: 20px; padding: 32px 36px; margin-bottom: 32px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    }
+    .part-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+      border-radius: 16px; display: flex; align-items: center; justify-content: center;
+      font-size: 24px; flex-shrink: 0; box-shadow: 0 8px 20px rgba(255,107,43,0.25);
+    }
+    .part-info h3 { font-size: 22px; font-weight: 800; color: var(--dark); margin-bottom: 6px; }
+    .part-info p { color: var(--text-light); font-size: 15px; line-height: 1.6; }
+    .part-modules { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .part-module { background: var(--grey-light); color: var(--text); font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 6px; }
+
+    /* CARDS GRID */
+    .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
+    .cards-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .card {
+      background: white; border: 1px solid var(--grey-border);
+      border-radius: 16px; padding: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04); transition: box-shadow 0.2s;
+    }
+    .card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .card-icon { font-size: 28px; margin-bottom: 14px; }
+    .card h4 { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .card p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+    .card.orange-border { border-top: 3px solid var(--orange); }
+
+    /* STEPS */
+    .steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 32px; }
+    .step { display: flex; gap: 20px; position: relative; }
+    .step:not(:last-child)::after {
+      content: ''; position: absolute; left: 19px; top: 48px; bottom: -12px;
+      width: 2px; background: linear-gradient(to bottom, var(--orange), rgba(255,107,43,0.1));
+    }
+    .step-num {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 800; font-size: 14px; flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(255,107,43,0.3);
+    }
+    .step-content {
+      background: white; border: 1px solid var(--grey-border);
+      border-radius: 14px; padding: 20px 24px; margin-bottom: 12px; flex: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .step-content h4 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .step-content p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+
+    /* VIDEO EMBED */
+    .video-embed-box {
+      background: var(--dark);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .video-embed-label {
+      padding: 14px 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .video-embed-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--orange);
+    }
+    .video-embed-title { color: white; font-size: 13px; font-weight: 600; }
+    .video-embed-sub { color: rgba(255,255,255,0.4); font-size: 12px; margin-left: auto; }
+    .video-embed-box iframe {
+      display: block;
+      width: 100%;
+      height: 480px;
+      border: none;
+    }
+
+    /* CODE BLOCK */
+    .code-block {
+      background: var(--dark); border-radius: 14px; padding: 24px 28px;
+      margin-bottom: 20px; position: relative;
+    }
+    .code-block-label {
+      position: absolute; top: 12px; right: 14px;
+      background: rgba(255,107,43,0.2); color: var(--orange-light);
+      font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 5px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .code-block pre {
+      color: rgba(255,255,255,0.85);
+      font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+      font-size: 13px; line-height: 1.7; white-space: pre-wrap; word-break: break-word;
+    }
+    .code-block pre .key { color: var(--orange-light); }
+    .code-block pre .val { color: #A8D8A8; }
+
+    /* MODE TOGGLE */
+    .mode-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
+    .mode-card { background: white; border: 2px solid var(--grey-border); border-radius: 16px; padding: 24px; }
+    .mode-card.active { border-color: var(--orange); background: var(--orange-pale); }
+    .mode-badge {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      padding: 4px 10px; border-radius: 6px; margin-bottom: 12px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .mode-badge.simple { background: #DCFCE7; color: #166534; }
+    .mode-badge.expert { background: #FEF3C7; color: #92400E; }
+    .mode-card h4 { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .mode-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+
+    /* CALLOUT */
+    .callout {
+      border-radius: 12px; padding: 16px 20px; margin-bottom: 20px;
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 14px; line-height: 1.6;
+    }
+    .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .callout.info { background: #EFF6FF; border-left: 3px solid var(--info); color: #1E40AF; }
+    .callout.warning { background: #FFFBEB; border-left: 3px solid var(--warning); color: #92400E; }
+    .callout.success { background: #ECFDF5; border-left: 3px solid var(--success); color: #065F46; }
+    .callout.orange { background: var(--orange-pale); border-left: 3px solid var(--orange); color: var(--orange-dark); }
+
+    /* STATUS TAGS */
+    .status-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+    .status-tag {
+      background: white; border: 1px solid var(--grey-border);
+      border-radius: 12px; padding: 16px 18px;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .status-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+    .status-dot.enrich { background: var(--orange); }
+    .status-dot.notok { background: #EF4444; }
+    .status-dot.black { background: var(--dark); }
+    .status-info strong { display: block; font-size: 14px; font-weight: 700; color: var(--dark); }
+    .status-info span { font-size: 12px; color: var(--text-light); }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--grey-border), transparent);
+      margin: 56px 0;
+    }
+
+    .section { margin-bottom: 64px; }
+
+    /* TEST LIST */
+    .test-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .test-item {
+      background: white; border: 1px solid var(--grey-border);
+      border-radius: 12px; padding: 16px 20px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .test-check {
+      width: 22px; height: 22px; border: 2px solid var(--grey-border);
+      border-radius: 6px; flex-shrink: 0; margin-top: 1px;
+    }
+    .test-item-content strong { display: block; font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+    .test-item-content span { font-size: 13px; color: var(--text-light); }
+    .test-item-tag {
+      margin-left: auto; font-size: 11px; font-weight: 700;
+      padding: 3px 8px; border-radius: 5px; white-space: nowrap;
+      text-transform: uppercase; letter-spacing: 0.3px; flex-shrink: 0;
+    }
+    .tag-scraping { background: #FEF3C7; color: #92400E; }
+    .tag-veille { background: #EDE9FE; color: #5B21B6; }
+    .tag-crm { background: #DCFCE7; color: #166534; }
+    .tag-feedback { background: var(--orange-pale); color: var(--orange-dark); }
+
+    /* TOC */
+    .toc {
+      background: white; border: 1px solid var(--grey-border);
+      border-radius: 16px; padding: 28px 32px; margin-bottom: 48px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .toc h4 { font-size: 13px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+    .toc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; list-style: none; }
+    .toc-list li a {
+      display: flex; align-items: center; gap: 8px;
+      color: var(--text); text-decoration: none; font-size: 14px;
+      padding: 6px 10px; border-radius: 8px; transition: background 0.15s;
+    }
+    .toc-list li a:hover { background: var(--orange-pale); color: var(--orange-dark); }
+    .toc-num {
+      width: 20px; height: 20px; background: var(--orange-pale); color: var(--orange-dark);
+      border-radius: 5px; font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* FOOTER */
+    .footer { background: var(--dark); padding: 48px 32px; text-align: center; }
+    .footer-inner { max-width: 600px; margin: 0 auto; }
+    .footer h3 { color: white; font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+    .footer h3 span { color: var(--orange); }
+    .footer p { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 24px; }
+    .footer-contact {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,107,43,0.15); border: 1px solid rgba(255,107,43,0.3);
+      color: var(--orange-light); font-weight: 600; font-size: 14px;
+      padding: 10px 20px; border-radius: 10px;
+    }
+    .footer-credit { margin-top: 32px; color: rgba(255,255,255,0.2); font-size: 12px; }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .cards-grid, .cards-grid-3, .mode-toggle, .status-grid { grid-template-columns: 1fr; }
+      .intro-banner-grid { grid-template-columns: 1fr; }
+      .toc-list { grid-template-columns: 1fr; }
+      .page { padding: 0 16px 60px; }
+      .header-inner { padding: 14px 16px; }
+      .hero { padding: 56px 16px 80px; }
+      .intro-banner { padding: 28px 24px; }
+      .video-embed-box iframe { height: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <div class="header-logo-dot">L</div>
+      <div class="header-logo-text">Agence <span>Lak</span> × Unit Groupe</div>
+    </div>
+    <div class="header-badge">Version 1.0 Bêta</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">📖 Guide d'utilisation</div>
+    <h1>Application <span>Unit Groupe</span><br>Bienvenue</h1>
+    <p class="hero-sub">Ce guide vous accompagne dans la prise en main de votre plateforme IA : sourcing de candidats, veille appels d'offres et CRM intégré.</p>
+    <div class="hero-pills">
+      <span class="hero-pill"><span class="dot"></span>Scraping IA</span>
+      <span class="hero-pill"><span class="dot"></span>Veille IA</span>
+      <span class="hero-pill"><span class="dot"></span>CRM candidats</span>
+      <span class="hero-pill"><span class="dot"></span>Appels d'offres</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- INTRO BANNER -->
+  <div class="intro-banner">
+    <div class="intro-banner-grid">
+      <div>
+        <h2>Bienvenue sur votre application IA 🎉</h2>
+        <p>Vous allez recevoir votre accès par invitation. Cette application est le fruit de plusieurs semaines de développement en collaboration avec vos équipes. Elle se compose de deux modules principaux : <strong>Scraping IA</strong> pour le sourcing de candidats et <strong>Veille IA</strong> pour la surveillance des appels d'offres.<br><br>Nous sommes ici sur la <strong>V1 de l'application</strong>. Des bugs et des résultats parfois inconsistants peuvent apparaître, c'est tout à fait normal à ce stade. Vos retours sont essentiels pour qu'on améliore ensemble l'application et qu'au bout de quelques mois vous disposiez d'un outil pleinement opérationnel, qui vous fera gagner un temps considérable.</p>
+      </div>
+      <div class="intro-stats">
+        <div class="intro-stat">
+          <span class="intro-stat-icon">🤖</span>
+          <span class="intro-stat-text">Sourcing de candidats APEC et LinkedIn automatisé par IA</span>
+        </div>
+        <div class="intro-stat">
+          <span class="intro-stat-icon">📡</span>
+          <span class="intro-stat-text">Veille BOAMP et TED Europa en temps réel</span>
+        </div>
+        <div class="intro-stat">
+          <span class="intro-stat-icon">💬</span>
+          <span class="intro-stat-text">Vos feedbacks construisent la roadmap des prochains mois</span>
+        </div>
+        <div class="intro-stat">
+          <span class="intro-stat-icon">📊</span>
+          <span class="intro-stat-text">Dashboard centralisé, CRM intégré et historique des recherches</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h4>Sommaire</h4>
+    <ul class="toc-list">
+      <li><a href="#scraping"><span class="toc-num">1</span> Scraping IA Présentation</a></li>
+      <li><a href="#recherche"><span class="toc-num">2</span> Recherche de candidats</a></li>
+      <li><a href="#crm"><span class="toc-num">3</span> CRM candidats</a></li>
+      <li><a href="#veille"><span class="toc-num">4</span> Veille IA Appels d'offres</a></li>
+      <li><a href="#feedback"><span class="toc-num">5</span> Feedbacks et Bugs</a></li>
+      <li><a href="#tests"><span class="toc-num">6</span> Tests à réaliser</a></li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- PARTIE 1 : SCRAPING IA -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section" id="scraping">
+    <div class="section-label">📌 Partie 1</div>
+    <div class="section-title">Scraping IA <span>Candidats</span></div>
+    <p class="section-sub">Sourcez, enrichissez et gérez vos candidats directement depuis l'application, sans passer par des plateformes tierces.</p>
+
+    <div class="part-header">
+      <div class="part-icon">🎯</div>
+      <div class="part-info">
+        <h3>Scraping IA Candidats et Prospects</h3>
+        <p>Ce module vous permet de lancer des recherches de candidats sur APEC et LinkedIn via l'IA, d'enrichir les profils trouvés (email, téléphone) et de les gérer dans un CRM intégré. Pour l'instant dédié aux candidats, les prospects arriveront dans une version future.</p>
+        <div class="part-modules">
+          <span class="part-module">📊 Dashboard</span>
+          <span class="part-module">🔍 Recherche candidats</span>
+          <span class="part-module">👥 CRM</span>
+          <span class="part-module">📜 Historique</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card orange-border">
+        <div class="card-icon">📊</div>
+        <h4>Dashboard</h4>
+        <p>Vue centralisée de toutes vos données : nombre de candidats par source, taux d'enrichissement, statuts CRM et statistiques de vos dernières recherches.</p>
+      </div>
+      <div class="card orange-border">
+        <div class="card-icon">🔍</div>
+        <h4>Recherche candidats</h4>
+        <p>Lancez un scraping sur APEC et/ou LinkedIn en décrivant votre besoin en langage naturel ou via une équation booléenne. L'IA formule la requête optimale.</p>
+      </div>
+      <div class="card orange-border">
+        <div class="card-icon">👥</div>
+        <h4>CRM IA</h4>
+        <p>Tous les candidats remontés sont automatiquement catégorisés. Vous pouvez les enrichir, les qualifier et les suivre depuis cet espace.</p>
+      </div>
+      <div class="card orange-border">
+        <div class="card-icon">📜</div>
+        <h4>Historique</h4>
+        <p>Retrouvez toutes vos recherches passées avec leurs paramètres, les candidats associés et la possibilité de relancer une recherche similaire en un clic.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- PARTIE 2 : RECHERCHE CANDIDATS + MODES -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section" id="recherche">
+    <div class="section-label">🔍 Section</div>
+    <div class="section-title">Recherche de <span>candidats</span></div>
+    <p class="section-sub">Lancez votre premier scraping en quelques clics. La vidéo ci-dessous vous guide pas à pas sur le fonctionnement de la recherche.</p>
+
+    <div class="video-embed-box">
+      <div class="video-embed-label">
+        <div class="video-embed-dot"></div>
+        <span class="video-embed-title">Tutoriel Recherche candidats</span>
+        <span class="video-embed-sub">Filtres, sources, lancement et résultats</span>
+      </div>
+      <iframe src="https://www.loom.com/embed/c5dde3f8f05644bd84e00b80f0d81232" allowfullscreen></iframe>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Choisissez votre source</h4>
+          <p>Sélectionnez APEC, LinkedIn, ou les deux. APEC donne accès à la CVthèque des candidats en recherche active. LinkedIn permet de cibler des profils plus passifs via les réseaux professionnels.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Renseignez vos filtres</h4>
+          <p>Métier/mots-clés, localisation, niveau de séniorité, disponibilité. Plus vos filtres sont précis, plus les résultats seront pertinents.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Décrivez votre besoin</h4>
+          <p>En mode Simple, écrivez en langage naturel ce que vous recherchez. L'IA reformule automatiquement la requête en équation booléenne optimisée pour la plateforme.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Lancez et attendez les résultats</h4>
+          <p>Cliquez sur Lancer la recherche. Les candidats remontent progressivement dans le CRM. Vous pouvez ensuite les enrichir pour obtenir leurs coordonnées.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODE SIMPLE VS EXPERT -->
+    <div style="margin-top: 48px; margin-bottom: 20px;">
+      <div class="section-label">⚙️ Modes de recherche</div>
+      <div class="section-title" style="font-size: 26px; margin-bottom: 8px;">Mode Simple <span>vs</span> Expert</div>
+      <p class="section-sub" style="margin-bottom: 28px;">L'application propose deux façons de formuler votre recherche selon votre niveau de maîtrise des requêtes booléennes.</p>
+    </div>
+
+    <div class="mode-toggle">
+      <div class="mode-card active">
+        <span class="mode-badge simple">✅ Simple</span>
+        <h4>Mode Simple — Recommandé pour débuter</h4>
+        <p>Vous décrivez votre besoin en français courant. L'IA génère automatiquement l'équation booléenne optimale pour la plateforme choisie. Aucune connaissance technique requise.</p>
+      </div>
+      <div class="mode-card">
+        <span class="mode-badge expert">🔧 Expert</span>
+        <h4>Mode Expert — Pour les utilisateurs avancés</h4>
+        <p>Vous saisissez directement votre équation booléenne. Idéal si vous maîtrisez précisément les opérateurs et que vous souhaitez contrôler exactement la requête envoyée à la plateforme.</p>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <div style="font-size: 13px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">📝 Exemple de recherche Mode Simple</div>
+      <div class="code-block">
+        <span class="code-block-label">Mode Simple</span>
+        <pre><span class="key">Mots-clés / Métier :</span>  <span class="val">Ingénieur ferroviaire</span>
+<span class="key">Localisation :</span>         <span class="val">Île-de-France</span>
+<span class="key">Séniorité :</span>            <span class="val">N'importe</span>
+<span class="key">Description du besoin :</span>
+  <span class="val">Je cherche un ingénieur ferroviaire avec une expérience en études
+  ou travaux sur des projets d'infrastructure ferroviaire en Île-de-France.
+  Idéalement une expérience chez SNCF Réseau, Systra, Egis Rail ou Alstom.
+  Disponible rapidement.</span></pre>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <div style="font-size: 13px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">📝 Exemple de recherche Mode Expert</div>
+      <div class="code-block">
+        <span class="code-block-label">Mode Expert</span>
+        <pre><span class="key">Métier :</span>                <span class="val">Chef de projet ferroviaire / PMO / AMO</span>
+<span class="key">Équation booléenne :</span>    <span class="val">(chef de projet ferroviaire OR PMO ferroviaire
+                        OR AMO ferroviaire) AND (SNCF Réseau OR SNCF)
+                        AND (infrastructure OR LGV OR grands projets)</span>
+<span class="key">Localisation :</span>         <span class="val">Lyon</span>
+<span class="key">Séniorité :</span>            <span class="val">Sénior (10 ans et +)</span>
+<span class="key">Disponibilité :</span>        <span class="val">N'importe</span>
+<span class="key">Description :</span>
+  <span class="val">Chef de projet ou PMO ferroviaire senior pour accompagner
+  le projet de régénération LGV Paris-Lyon. Mission en phase
+  études préliminaires 2026-2028. Pilotage coûts/délais/risques,
+  animation COPIL/COTECH, coordination multi-acteurs, suivi
+  budgétaire. Expérience SNCF Réseau très appréciée.</span></pre>
+      </div>
+    </div>
+
+    <div class="callout orange">
+      <span class="callout-icon">💡</span>
+      <div>En Mode Expert, l'équation booléenne que vous saisissez est envoyée telle quelle à la plateforme. Vérifiez la syntaxe (parenthèses, opérateurs AND/OR) pour éviter des résultats inattendus.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- PARTIE 3 : CRM -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section" id="crm">
+    <div class="section-label">👥 Section</div>
+    <div class="section-title">CRM <span>candidats</span></div>
+    <p class="section-sub">Qualifiez, enrichissez et suivez vos candidats depuis un espace centralisé.</p>
+
+    <div style="margin-bottom: 12px; font-size: 14px; font-weight: 700; color: var(--dark);">Étape 1 Qualifier vos résultats et lancer l'enrichissement</div>
+
+    <div class="video-embed-box" style="margin-bottom: 28px;">
+      <div class="video-embed-label">
+        <div class="video-embed-dot"></div>
+        <span class="video-embed-title">Tutoriel Enrichissement candidats</span>
+        <span class="video-embed-sub">Catégoriser les résultats et lancer l'enrichissement</span>
+      </div>
+      <iframe src="https://www.loom.com/embed/b328610939b249d288fd7a7f57fecba0" allowfullscreen></iframe>
+    </div>
+
+    <p style="font-size: 15px; color: var(--text); margin-bottom: 16px;">Après chaque scraping, les candidats remontés apparaissent dans le CRM. Vous pouvez les qualifier en leur attribuant un statut :</p>
+
+    <div class="status-grid">
+      <div class="status-tag">
+        <div class="status-dot enrich"></div>
+        <div class="status-info">
+          <strong>À enrichir</strong>
+          <span>Profil potentiellement intéressant, lancer l'enrichissement pour obtenir les coordonnées</span>
+        </div>
+      </div>
+      <div class="status-tag">
+        <div class="status-dot notok"></div>
+        <div class="status-info">
+          <strong>Non pertinent</strong>
+          <span>Pas adapté à cette recherche, mais peut réapparaître dans un futur scraping</span>
+        </div>
+      </div>
+      <div class="status-tag">
+        <div class="status-dot black"></div>
+        <div class="status-info">
+          <strong>Blacklisté</strong>
+          <span>Ne sera plus jamais présenté dans aucune recherche future</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warning">
+      <span class="callout-icon">⚠️</span>
+      <div><strong>Différence Non pertinent vs Blacklisté :</strong> Un candidat non pertinent peut vous être reproposé lors d'une autre recherche (il ne correspondait pas à celle-ci, mais peut correspondre à une autre). Un candidat blacklisté est définitivement exclu de toutes vos recherches futures.</div>
+    </div>
+
+    <div style="margin-bottom: 12px; font-size: 14px; font-weight: 700; color: var(--dark);">Étape 2 Gérer votre CRM</div>
+
+    <div class="video-embed-box" style="margin-bottom: 28px;">
+      <div class="video-embed-label">
+        <div class="video-embed-dot"></div>
+        <span class="video-embed-title">Tutoriel CRM complet</span>
+        <span class="video-embed-sub">Vues, filtres, notes et gestion des statuts</span>
+      </div>
+      <iframe src="https://www.loom.com/embed/3b117426ea0c484081e996c033bae98b" allowfullscreen></iframe>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h4>Vue liste et kanban</h4>
+        <p>Basculez entre une vue liste pour avoir une vue d'ensemble et un kanban pour suivre l'avancement de chaque candidat selon son statut.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔎</div>
+        <h4>Filtres et recherche</h4>
+        <p>Filtrez par source (APEC/LinkedIn), statut, date de scraping ou mots-clés pour retrouver rapidement un profil spécifique.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📝</div>
+        <h4>Notes et suivi</h4>
+        <p>Ajoutez des notes internes sur chaque candidat pour garder une trace des échanges, des impressions et des prochaines étapes.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- PARTIE 4 : VEILLE IA -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section" id="veille">
+    <div class="section-label">📡 Partie 2</div>
+    <div class="section-title">Veille IA <span>Appels d'offres</span></div>
+    <p class="section-sub">Surveillez automatiquement les appels d'offres BOAMP et TED Europa en fonction de vos critères et recevez un score IA sur chaque opportunité.</p>
+
+    <div class="part-header">
+      <div class="part-icon">📡</div>
+      <div class="part-info">
+        <h3>Veille IA Appels d'offres publics</h3>
+        <p>Configurez vos veilles simplement. L'application scrape automatiquement BOAMP (annonces françaises) et TED Europa (annonces européennes) selon la fréquence choisie, score chaque opportunité de 0 à 100 grâce à l'IA, et vous les présente dans un format clair et actionnable.</p>
+        <div class="part-modules">
+          <span class="part-module">📊 Dashboard</span>
+          <span class="part-module">🎯 Opportunités</span>
+          <span class="part-module">⚙️ Mes veilles</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards-grid cards-grid-3">
+      <div class="card orange-border">
+        <div class="card-icon">📊</div>
+        <h4>Dashboard</h4>
+        <p>Vue globale de vos veilles actives, du nombre d'opportunités détectées, des scores moyens et de l'activité récente.</p>
+      </div>
+      <div class="card orange-border">
+        <div class="card-icon">🎯</div>
+        <h4>Opportunités</h4>
+        <p>Toutes les opportunités remontées par vos veilles, avec leur score IA, résumé, montant estimé et lien vers l'AO officiel.</p>
+      </div>
+      <div class="card orange-border">
+        <div class="card-icon">⚙️</div>
+        <h4>Mes veilles</h4>
+        <p>Créez, modifiez et gérez vos veilles : mots-clés, fréquence, sources, seuil de score minimum.</p>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 12px; font-size: 14px; font-weight: 700; color: var(--dark);">Comment ça fonctionne</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Configurez une veille</h4>
+          <p>Choisissez un nom, renseignez vos mots-clés, vos métiers et vos secteurs (ex : MOE ferroviaire, infrastructure SNCF), sélectionnez la fréquence (quotidienne, hebdomadaire…), le seuil de score minimum et les sources (BOAMP, TED Europa).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>L'IA scrape et analyse</h4>
+          <p>À chaque déclenchement, l'application interroge les plateformes, récupère les AO correspondants et les soumet à l'IA pour scoring et résumé. Seuls les AO dépassant votre seuil de score sont conservés.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Consultez vos opportunités</h4>
+          <p>Retrouvez dans Opportunités tous les AO scorés, avec un résumé IA, les métiers concernés, les critères clés et un score de 0 à 100 reflétant la pertinence par rapport à votre veille.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-embed-box" style="margin-bottom: 24px;">
+      <div class="video-embed-label">
+        <div class="video-embed-dot"></div>
+        <span class="video-embed-title">Tutoriel Veille IA complète</span>
+        <span class="video-embed-sub">Configuration d'une veille et consultation des opportunités</span>
+      </div>
+      <iframe src="https://www.loom.com/embed/dce35b7a8d464d4b809087c9bbe31ebe" allowfullscreen></iframe>
+    </div>
+
+    <div class="callout success">
+      <span class="callout-icon">💡</span>
+      <div>Sur chaque opportunité, vous pouvez donner un <strong>feedback</strong> en bas de la fiche : indiquez si l'AO correspond bien à votre veille ou non. Ces retours nous permettront d'affiner les algorithmes de scoring au fil des semaines.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- PARTIE 5 : FEEDBACKS -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section" id="feedback">
+    <div class="section-label">💬 Section importante</div>
+    <div class="section-title">Feedbacks <span>et Bugs</span></div>
+    <p class="section-sub">Vos retours sont le moteur de l'amélioration de l'application. Plus vous nous signalez, plus on avance vite.</p>
+
+    <div class="video-embed-box" style="margin-bottom: 28px;">
+      <div class="video-embed-label">
+        <div class="video-embed-dot"></div>
+        <span class="video-embed-title">Tutoriel Comment faire un feedback</span>
+        <span class="video-embed-sub">Signaler un bug, soumettre une idée ou donner un retour</span>
+      </div>
+      <iframe src="https://www.loom.com/embed/1d021ad9fc5b4c94813e98278f8b17be" allowfullscreen></iframe>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🐛</div>
+        <h4>Signaler un bug</h4>
+        <p>L'application ne répond pas comme prévu ? Un résultat est incohérent ? Une page plante ? Signalez-le directement depuis l'interface avec une description du contexte.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h4>Proposer une amélioration</h4>
+        <p>Vous pensez à une fonctionnalité qui vous ferait gagner du temps ? Une interface qui pourrait être plus intuitive ? Partagez-le, c'est exactement ce qui construit la roadmap.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h4>Commenter vos résultats</h4>
+        <p>Un scraping a remonté des profils hors sujet ? Un AO scoré à 85 n'avait rien à voir avec votre veille ? Ces retours précis nous aident à calibrer l'IA.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- PARTIE 6 : TESTS -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section" id="tests">
+    <div class="section-label">🧪 Phase test</div>
+    <div class="section-title">Tests à <span>réaliser</span></div>
+    <p class="section-sub">Avant de lancer de gros développements, on va laisser l'application tourner plusieurs semaines pour collecter vos retours et construire ensemble une roadmap sur plusieurs mois.</p>
+
+    <div class="callout info">
+      <span class="callout-icon">📅</span>
+      <div>Utilisez l'application normalement dans le cadre de vos activités quotidiennes. L'objectif n'est pas de tout tester en une fois, mais d'accumuler des retours réels sur plusieurs semaines. La liste ci-dessous vous guide sur les points de vigilance prioritaires.</div>
+    </div>
+
+    <div style="font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 16px;">🔍 Scraping IA</div>
+    <div class="test-list">
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Recherche simple profil généraliste</strong>
+          <span>Lancez une recherche en mode Simple sur un profil courant (ex : Chef de projet, Ingénieur BIM) et évaluez la pertinence des candidats remontés.</span>
+        </div>
+        <span class="test-item-tag tag-scraping">Scraping</span>
+      </div>
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Recherche simple profil niche</strong>
+          <span>Testez avec un profil très spécialisé (ex : Ingénieur Système OCTYS, AMO LGV) pour voir comment l'IA adapte l'équation sur des recherches pointues.</span>
+        </div>
+        <span class="test-item-tag tag-scraping">Scraping</span>
+      </div>
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Mode Expert équation manuelle</strong>
+          <span>Essayez le mode Expert avec une équation booléenne que vous maîtrisez et comparez les résultats obtenus vs le mode Simple sur la même recherche.</span>
+        </div>
+        <span class="test-item-tag tag-scraping">Scraping</span>
+      </div>
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Enrichissement candidats</strong>
+          <span>Sélectionnez 5 à 10 candidats et lancez l'enrichissement. Vérifiez la qualité des données récupérées (email, téléphone) et signalez si certains profils ne sont pas enrichis.</span>
+        </div>
+        <span class="test-item-tag tag-scraping">Scraping</span>
+      </div>
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Sources croisées APEC et LinkedIn</strong>
+          <span>Lancez une même recherche sur APEC et LinkedIn simultanément et comparez la qualité, la quantité et la pertinence des résultats par source.</span>
+        </div>
+        <span class="test-item-tag tag-scraping">Scraping</span>
+      </div>
+    </div>
+
+    <div style="font-size: 15px; font-weight: 700; color: var(--dark); margin: 24px 0 16px;">📊 CRM candidats</div>
+    <div class="test-list">
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Catégorisation des profils</strong>
+          <span>Après un scraping, catégorisez une dizaine de profils (à enrichir / non pertinent / blacklisté) et vérifiez que les statuts sont bien persistés après rafraîchissement.</span>
+        </div>
+        <span class="test-item-tag tag-crm">CRM</span>
+      </div>
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Comportement des blacklistés</strong>
+          <span>Vérifiez qu'un profil blacklisté ne réapparaît pas dans les recherches suivantes. Signalez si un profil blacklisté remonte à nouveau.</span>
+        </div>
+        <span class="test-item-tag tag-crm">CRM</span>
+      </div>
+    </div>
+
+    <div style="font-size: 15px; font-weight: 700; color: var(--dark); margin: 24px 0 16px;">📡 Veille IA</div>
+    <div class="test-list">
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Création d'une veille BOAMP</strong>
+          <span>Créez une veille sur votre domaine principal (ex : infrastructure ferroviaire MOE/AMO) avec fréquence quotidienne et score minimum 60. Évaluez la pertinence des premiers AO remontés.</span>
+        </div>
+        <span class="test-item-tag tag-veille">Veille</span>
+      </div>
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Création d'une veille TED Europa</strong>
+          <span>Testez la même recherche sur TED pour comparer la couverture européenne vs française. Notez les différences de résultats et de qualité de scoring.</span>
+        </div>
+        <span class="test-item-tag tag-veille">Veille</span>
+      </div>
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Pertinence du score IA</strong>
+          <span>Sur les AO remontés, vérifiez si le score attribué par l'IA correspond à votre propre évaluation. Signalez les AO sur ou sous-scorés via le feedback intégré.</span>
+        </div>
+        <span class="test-item-tag tag-veille">Veille</span>
+      </div>
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Doublons inter-sources</strong>
+          <span>Vérifiez si un même AO peut apparaître à la fois dans BOAMP et TED. Signalez tout doublon observé.</span>
+        </div>
+        <span class="test-item-tag tag-veille">Veille</span>
+      </div>
+    </div>
+
+    <div style="font-size: 15px; font-weight: 700; color: var(--dark); margin: 24px 0 16px;">💬 Feedbacks et Général</div>
+    <div class="test-list">
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Faire un premier feedback</strong>
+          <span>Testez la fonctionnalité de feedback en soumettant un retour (bug fictif ou réel, idée d'amélioration) pour vous familiariser avec l'interface.</span>
+        </div>
+        <span class="test-item-tag tag-feedback">Feedback</span>
+      </div>
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Navigation et ergonomie</strong>
+          <span>Notez tout ce qui vous semble peu intuitif, lent ou peu clair dans l'interface. Ces retours qualitatifs sont aussi précieux que les rapports de bugs.</span>
+        </div>
+        <span class="test-item-tag tag-feedback">Feedback</span>
+      </div>
+      <div class="test-item">
+        <div class="test-check"></div>
+        <div class="test-item-content">
+          <strong>Performance et temps de réponse</strong>
+          <span>Notez les temps d'attente sur les scrapings et les chargements de page. Si certaines opérations vous semblent trop lentes, signalez-le avec les détails du contexte.</span>
+        </div>
+        <span class="test-item-tag tag-feedback">Feedback</span>
+      </div>
+    </div>
+
+    <div class="callout success" style="margin-top: 32px;">
+      <span class="callout-icon">🎯</span>
+      <div>À l'issue de cette période de tests, on organisera ensemble un point de synthèse pour construire la <strong>roadmap de développement</strong> des prochains mois, basée sur vos retours réels et vos priorités métier.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <h3>Des questions ? <span>On est là.</span></h3>
+    <div class="footer-contact">
+      📩 &nbsp; mindia.agency@gmail.com
+    </div>
+    <div class="footer-credit">
+      Guide d'utilisation V1.0 Agence Lak × Unit Groupe Juin 2026
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
