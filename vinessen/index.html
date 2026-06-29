@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinessen × Agence Lak — Stratégie Prospection Internationale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --noir: #0a0a0a;
+    --encre: #111114;
+    --verre: #1a1a20;
+    --bordeaux: #7c2d3e;
+    --bordeaux-clair: #a83a50;
+    --or: #c8a96e;
+    --or-pale: #e8d5a8;
+    --gris-fume: #2a2a30;
+    --gris-moyen: #666672;
+    --gris-clair: #9898a8;
+    --blanc-casse: #f0ede8;
+    --blanc: #fafaf8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--noir);
+    color: var(--blanc-casse);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── GRAIN OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.6;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--or);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gris-clair);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--or); }
+
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 8rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  section:first-of-type {
+    padding-top: 10rem;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--or);
+    opacity: 0.4;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--blanc);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--or-pale);
+  }
+
+  .section-intro {
+    font-size: 0.9rem;
+    color: var(--gris-moyen);
+    max-width: 580px;
+    line-height: 1.9;
+    margin-bottom: 5rem;
+  }
+
+  /* ─── VIDEO THUMBNAIL MOCKUP ─── */
+  .email-video-thumb {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 70%, rgba(90,20,30,0.6) 0%, transparent 70%),
+      linear-gradient(160deg, #0c0608 0%, #18080e 45%, #0a0c10 100%);
+    border-radius: 3px;
+    margin: 1rem 0 0.4rem;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(200,169,110,0.12);
+  }
+
+  /* Décor lignes subtiles */
+  .thumb-deco-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 60px,
+        rgba(200,169,110,0.02) 60px,
+        rgba(200,169,110,0.02) 61px
+      );
+  }
+
+  /* Bouteille stylisée en SVG inline via pseudo */
+  .thumb-bottle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -55%);
+    width: 28px;
+    height: 70px;
+    background: linear-gradient(to bottom, rgba(200,169,110,0.06) 0%, rgba(200,169,110,0.02) 100%);
+    border: 1px solid rgba(200,169,110,0.08);
+    border-radius: 4px 4px 2px 2px;
+    opacity: 0.5;
+  }
+
+  .thumb-bottle::before {
+    content: '';
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 20px;
+    background: rgba(200,169,110,0.06);
+    border: 1px solid rgba(200,169,110,0.08);
+    border-bottom: none;
+    border-radius: 2px 2px 0 0;
+  }
+
+  /* Texte personnalisé centré — LA variable qui change */
+  .thumb-personalization {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    z-index: 2;
+  }
+
+  .thumb-company-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--or-pale);
+    letter-spacing: 0.08em;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+  }
+
+  .thumb-separator {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    color: rgba(200,169,110,0.4);
+    letter-spacing: 0.2em;
+  }
+
+  .thumb-vinessen {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: rgba(200,169,110,0.55);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .video-play-circle {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #111;
+    padding-left: 3px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    margin-top: 60px;
+  }
+
+  .video-bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 22px;
+    background: rgba(0,0,0,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.8rem;
+    z-index: 4;
+  }
+
+  .video-duration {
+    font-size: 0.62rem;
+    color: var(--gris-clair);
+    font-variant-numeric: tabular-nums;
+  }
+
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(200,169,110,0.2), transparent);
+    margin: 0;
+  }
+
+  /* ─── PROCESS STEPS ─── */
+  .process-grid {
+    display: grid;
+    gap: 2px;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0;
+    background: var(--verre);
+    border: 1px solid rgba(200,169,110,0.08);
+    transition: border-color 0.4s, background 0.4s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .process-step::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--bordeaux);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.4s ease;
+  }
+
+  .process-step:hover::before { transform: scaleY(1); }
+  .process-step:hover {
+    border-color: rgba(200,169,110,0.2);
+    background: rgba(26,26,32,0.9);
+  }
+
+  .step-index {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2.5rem 1.5rem;
+    border-right: 1px solid rgba(200,169,110,0.08);
+  }
+
+  .step-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    color: var(--or);
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+
+  .step-body {
+    padding: 2.5rem;
+  }
+
+  .step-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bordeaux-clair);
+    border: 1px solid rgba(168,58,80,0.3);
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--blanc);
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .step-desc {
+    font-size: 0.85rem;
+    color: var(--gris-moyen);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+
+  .step-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+  }
+
+  .tool-badge {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--gris-clair);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 0.25rem 0.75rem;
+    border-radius: 2px;
+  }
+
+  .step-detail {
+    margin-top: 1.2rem;
+    padding: 1.2rem;
+    background: rgba(0,0,0,0.3);
+    border-left: 2px solid rgba(200,169,110,0.2);
+  }
+
+  .step-detail p {
+    font-size: 0.8rem;
+    color: var(--gris-clair);
+    line-height: 1.8;
+    font-family: 'DM Sans', monospace;
+  }
+
+  .step-detail .flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+    margin-top: 0.8rem;
+  }
+
+  .flow-item {
+    font-size: 0.7rem;
+    color: var(--or-pale);
+    background: rgba(200,169,110,0.06);
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgba(200,169,110,0.15);
+  }
+
+  .flow-arrow {
+    color: var(--bordeaux-clair);
+    font-size: 0.7rem;
+    opacity: 0.6;
+  }
+
+  /* ─── EMAIL MOCKUP ─── */
+  .email-mockup {
+    background: #1e1e24;
+    border: 1px solid rgba(200,169,110,0.12);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 4rem;
+  }
+
+  .email-header {
+    background: #15151a;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .email-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  .email-body {
+    padding: 2rem 2.5rem;
+  }
+
+  .email-field {
+    display: flex;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 0.78rem;
+  }
+
+  .email-field-label {
+    color: var(--gris-moyen);
+    width: 60px;
+    flex-shrink: 0;
+  }
+
+  .email-field-value { color: var(--gris-clair); }
+
+  .email-content {
+    margin-top: 1.5rem;
+    font-size: 0.82rem;
+    line-height: 1.9;
+    color: var(--blanc-casse);
+  }
+
+  .email-highlight {
+    background: rgba(200,169,110,0.12);
+    border-left: 2px solid var(--or);
+    padding: 0.8rem 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: var(--or-pale);
+    font-size: 0.8rem;
+  }
+
+  .email-thumbnail {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(200,169,110,0.1);
+    padding: 1.2rem;
+    margin: 1.2rem 0;
+    border-radius: 2px;
+  }
+
+  .thumb-img {
+    width: 120px;
+    height: 68px;
+    background: linear-gradient(135deg, var(--bordeaux) 0%, var(--noir) 100%);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .thumb-company {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.65rem;
+    color: var(--or-pale);
+    letter-spacing: 0.1em;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .thumb-x {
+    font-size: 0.5rem;
+    color: rgba(200,169,110,0.5);
+    margin: 2px 0;
+    z-index: 1;
+  }
+
+  .thumb-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.55rem;
+    color: rgba(200,169,110,0.7);
+    letter-spacing: 0.05em;
+    z-index: 1;
+  }
+
+  .thumb-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.3);
+  }
+
+  .play-btn {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: rgba(200,169,110,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.55rem;
+    color: var(--noir);
+  }
+
+  .thumb-info { font-size: 0.75rem; }
+  .thumb-info strong { color: var(--blanc); display: block; margin-bottom: 0.2rem; }
+  .thumb-info span { color: var(--gris-moyen); font-size: 0.7rem; }
+
+  /* ─── ROADMAP ─── */
+  .roadmap-container {
+    position: relative;
+  }
+
+  .roadmap-phases {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(200,169,110,0.1);
+  }
+
+  .phase {
+    padding: 2.5rem;
+    border-right: 1px solid rgba(200,169,110,0.08);
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .phase:last-child { border-right: none; }
+  .phase:hover { background: rgba(26,26,32,0.6); }
+
+  .phase-flag {
+    display: inline-block;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .phase-flag.warmup {
+    background: rgba(200,169,110,0.1);
+    color: var(--or);
+    border: 1px solid rgba(200,169,110,0.25);
+  }
+
+  .phase-flag.setup {
+    background: rgba(124,45,62,0.12);
+    color: var(--bordeaux-clair);
+    border: 1px solid rgba(124,45,62,0.25);
+  }
+
+  .phase-flag.campaign {
+    background: rgba(255,255,255,0.04);
+    color: var(--blanc-casse);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .phase-dates {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--blanc);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .phase-duration {
+    font-size: 0.7rem;
+    color: var(--gris-moyen);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  .phase-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .phase-items li {
+    font-size: 0.8rem;
+    color: var(--gris-clair);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .phase-items li::before {
+    content: '—';
+    color: var(--or);
+    opacity: 0.4;
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    margin-top: 0.15rem;
+  }
+
+  /* ─── TIMELINE BAR ─── */
+  .timeline-bar {
+    background: var(--verre);
+    border: 1px solid rgba(200,169,110,0.08);
+    padding: 2rem 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris-moyen);
+    margin-bottom: 1.2rem;
+  }
+
+  .timeline-track {
+    height: 6px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 3px;
+    position: relative;
+    overflow: visible;
+    margin-bottom: 0.8rem;
+  }
+
+  .timeline-segment {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    border-radius: 3px;
+  }
+
+  .seg-warmup {
+    left: 0;
+    width: 21.4%;
+    background: linear-gradient(to right, var(--or), rgba(200,169,110,0.6));
+  }
+
+  .seg-campaign {
+    left: 21.4%;
+    width: 78.6%;
+    background: linear-gradient(to right, var(--bordeaux), rgba(124,45,62,0.4));
+  }
+
+  .timeline-months {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+  }
+
+  .timeline-month {
+    font-size: 0.62rem;
+    color: var(--gris-moyen);
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-legend {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.2rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    color: var(--gris-clair);
+  }
+
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+
+  /* ─── SEQUENCE ─── */
+  .sequence-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: rgba(200,169,110,0.06);
+    border: 1px solid rgba(200,169,110,0.08);
+    margin-top: 3rem;
+  }
+
+  .seq-step {
+    background: var(--verre);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .seq-step:hover { background: rgba(26,26,32,0.95); }
+
+  .seq-day {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--or);
+    opacity: 0.6;
+    margin-bottom: 0.8rem;
+  }
+
+  .seq-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .seq-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--blanc);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .seq-desc {
+    font-size: 0.72rem;
+    color: var(--gris-moyen);
+    line-height: 1.6;
+  }
+
+  /* ─── METRICS ─── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(200,169,110,0.06);
+    border: 1px solid rgba(200,169,110,0.08);
+    margin-top: 3rem;
+  }
+
+  .metric-card {
+    background: var(--verre);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+  }
+
+  .metric-card:hover { background: rgba(26,26,32,0.9); }
+
+  .metric-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--or);
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .metric-label {
+    font-size: 0.72rem;
+    color: var(--gris-clair);
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .metric-note {
+    font-size: 0.65rem;
+    color: var(--gris-moyen);
+    font-style: italic;
+    line-height: 1.5;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    padding-top: 0.8rem;
+    margin-top: 0.8rem;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid rgba(200,169,110,0.1);
+    padding: 4rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .footer-left .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--or);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-left p {
+    font-size: 0.75rem;
+    color: var(--gris-moyen);
+  }
+
+  .footer-right {
+    text-align: right;
+  }
+
+  .footer-right p {
+    font-size: 0.72rem;
+    color: var(--gris-moyen);
+    line-height: 1.8;
+  }
+
+  .footer-right a {
+    color: var(--or);
+    text-decoration: none;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .roadmap-phases { grid-template-columns: 1fr; }
+    .phase { border-right: none; border-bottom: 1px solid rgba(200,169,110,0.08); }
+    .sequence-grid { grid-template-columns: 1fr 1fr; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .process-step { grid-template-columns: 60px 1fr; }
+    footer { flex-direction: column; gap: 2rem; }
+    .footer-right { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Vinessen × Lak</div>
+  <ul class="nav-links">
+    <li><a href="#process">Process</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#sequence">Séquence</a></li>
+    <li><a href="#objectifs">Objectifs</a></li>
+  </ul>
+</nav>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-label fade-in">Architecture du système</div>
+  <h2 class="section-title fade-in">Le process <em>étape par étape</em></h2>
+  <p class="section-intro fade-in">
+    Cinq étapes successives, de la construction de la base de données jusqu'à l'envoi des campagnes multicanales. Chaque étape est automatisée via Make.com et l'API d'IA d'Anthropic.
+  </p>
+
+  <div class="process-grid">
+
+    <!-- STEP 1 -->
+    <div class="process-step fade-in">
+      <div class="step-index">
+        <span class="step-number">01</span>
+      </div>
+      <div class="step-body">
+        <span class="step-tag">Base de données</span>
+        <h3 class="step-title">Sourcing des importateurs</h3>
+        <p class="step-desc">
+          L'objectif de cette étape est simple : constituer une liste d'importateurs de vins en Europe. Pour cela, deux approches complémentaires — les bases de données spécialisées vin (annuaires d'importateurs vérifiés, données douanières) et le scraping automatisé de sources publiques : pages "nos distributeurs" sur les sites de domaines viticoles, Google Maps, salons professionnels. Le résultat est un CSV unifié, nettoyé et prêt à enrichir.
+        </p>
+        <div class="step-detail">
+          <p>Sources combinées :</p>
+          <div class="flow">
+            <span class="flow-item">Bases de données spécialisées vin</span>
+            <span class="flow-arrow">+</span>
+            <span class="flow-item">Données douanières publiques</span>
+            <span class="flow-arrow">+</span>
+            <span class="flow-item">Scraping pages "distributeurs" de domaines viticoles</span>
+            <span class="flow-arrow">+</span>
+            <span class="flow-item">Google Maps & annuaires locaux</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="process-step fade-in">
+      <div class="step-index">
+        <span class="step-number">02</span>
+      </div>
+      <div class="step-body">
+        <span class="step-tag">Contact décisionnaire</span>
+        <h3 class="step-title">Identification du contact</h3>
+        <p class="step-desc">
+          Avant toute collecte d'informations, on identifie le bon interlocuteur dans chaque entreprise — directeur des achats, import manager, propriétaire. Si aucun contact n'est trouvé, l'entreprise est écartée pour ne pas perdre de temps sur les étapes suivantes. Les emails invalides sont filtrés automatiquement.
+        </p>
+        <div class="step-detail">
+          <p>Logique de recherche :</p>
+          <div class="flow">
+            <span class="flow-item">Enrichissement email pro</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">Si vide : recherche LinkedIn</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">Si vide : écarté ou LinkedIn DM uniquement</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="process-step fade-in">
+      <div class="step-index">
+        <span class="step-number">03</span>
+      </div>
+      <div class="step-body">
+        <span class="step-tag">Enrichissement</span>
+        <h3 class="step-title">Collecte d'informations par prospect</h3>
+        <p class="step-desc">
+          Une fois le contact identifié, une collecte multi-sources est déclenchée automatiquement : scraping du site web de l'entreprise, recherche d'actualités récentes, extraction des données LinkedIn du décisionnaire lui-même. Ces informations sont centralisées dans le CRM et servent de matière à l'accroche personnalisée.
+        </p>
+        <div class="step-detail">
+          <p>Flux automatisé :</p>
+          <div class="flow">
+            <span class="flow-item">Site web entreprise</span>
+            <span class="flow-arrow">+</span>
+            <span class="flow-item">Actualités récentes</span>
+            <span class="flow-arrow">+</span>
+            <span class="flow-item">LinkedIn du décisionnaire</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">Centralisation dans le CRM HubSpot</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="process-step fade-in">
+      <div class="step-index">
+        <span class="step-number">04</span>
+      </div>
+      <div class="step-body">
+        <span class="step-tag">Personnalisation IA</span>
+        <h3 class="step-title">Génération de l'accroche</h3>
+        <p class="step-desc">
+          Pour chaque prospect, l'IA génère une accroche email unique de 2 phrases basée sur les informations collectées à l'étape précédente. Si les informations collectées ne sont pas suffisantes, le prospect est automatiquement basculé dans une campagne de prospection sans accroche personnalisée.
+        </p>
+        <div class="step-detail">
+          <p>Exemple d'output pour un importateur néerlandais :</p>
+          <div class="flow" style="margin-top:0.6rem">
+            <span class="flow-item" style="font-style:italic;font-size:0.68rem;color:var(--or-pale);">"Nous avons parcouru votre sélection sur VinNL — solide sur l'Italie et l'Espagne, mais aucun Languedoc à ce stade. C'est précisément là que Vinessen travaille depuis 12 ans."</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="process-step fade-in">
+      <div class="step-index">
+        <span class="step-number">05</span>
+      </div>
+      <div class="step-body">
+        <span class="step-tag">Outreach multicanal</span>
+        <h3 class="step-title">Envoi campagne</h3>
+        <p class="step-desc">
+          Le prospect est injecté dans la séquence avec toutes ses variables : accroche IA, email vérifié, nom de l'entreprise. Le premier email intègre un thumbnail cliquable personnalisé — une image dans le thème Vinessen avec le nom de l'entreprise en superposition. Un clic redirige vers la vidéo motion design. La séquence enchaîne ensuite 4 touchpoints complémentaires sur 21 jours.
+        </p>
+        <div class="step-detail">
+          <p>Thumbnail email :</p>
+          <div class="flow" style="margin-top:0.5rem">
+            <span class="flow-item">Image thème Vinessen</span>
+            <span class="flow-arrow">+</span>
+            <span class="flow-item">Nom entreprise en variable</span>
+            <span class="flow-arrow">+</span>
+            <span class="flow-item">Bouton ▶</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-item">Clic → vidéo motion design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- EMAIL MOCKUP -->
+  <div class="email-mockup fade-in">
+    <div class="email-header">
+      <div class="email-dot" style="background:#ff5f57"></div>
+      <div class="email-dot" style="background:#febc2e"></div>
+      <div class="email-dot" style="background:#28c840"></div>
+      <span style="font-size:0.7rem;color:var(--gris-moyen);margin-left:1rem;letter-spacing:0.05em;">Aperçu email — Schmidt Weinimport GmbH</span>
+    </div>
+    <div class="email-body">
+      <div class="email-field">
+        <span class="email-field-label">De</span>
+        <span class="email-field-value">william@vinessen.co</span>
+      </div>
+      <div class="email-field">
+        <span class="email-field-label">À</span>
+        <span class="email-field-value">thomas.schmidt@schmidtwein.de</span>
+      </div>
+      <div class="email-field">
+        <span class="email-field-label">Objet</span>
+        <span class="email-field-value">Let's make wine sexy again!</span>
+      </div>
+
+      <div class="email-content">
+        <p>Hello Thomas,</p>
+        <br>
+
+        <div class="email-highlight">
+          <span style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--or);opacity:0.7;">✦ Accroche personnalisée — générée par IA pour chaque prospect</span><br><br>
+          <span style="font-size:0.82rem;color:var(--or-pale);font-style:italic;">Lorem ipsum dolor sit amet, consectetur adipiscing elit — sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.</span>
+        </div>
+
+        <p>I thought I'd share something we've been building lately.<br>
+        Wine deserves to feel alive again.<br>
+        What if every bottle became a story, a human connection and a real shared moment?</p>
+        <br>
+        <p>🎬 1 minute to discover how we want to reinvent wine discovery:</p>
+
+        <!-- THUMBNAIL IMAGE — image statique thème vin, texte "Company × Vinessen" superposé via variable Lemlist -->
+        <div class="email-video-thumb">
+          <!-- Décor visuel fond -->
+          <div class="thumb-deco-lines"></div>
+          <div class="thumb-bottle"></div>
+          <!-- Texte personnalisé : la seule variable qui change par prospect -->
+          <div class="thumb-personalization">
+            <span class="thumb-company-name">Schmidt Weinimport</span>
+            <span class="thumb-separator">×</span>
+            <span class="thumb-vinessen">Vinessen</span>
+          </div>
+          <!-- Play button -->
+          <div class="video-overlay">
+            <div class="video-play-circle">▶</div>
+          </div>
+          <!-- Barre durée -->
+          <div class="video-bottom-bar">
+            <span style="font-size:0.6rem;color:rgba(200,169,110,0.5);font-style:italic;letter-spacing:0.05em;">Image cliquable — redirige vers la vidéo Vinessen</span>
+            <div class="video-duration">01:05</div>
+          </div>
+        </div>
+
+        <br>
+        <p>Open to a quick 15-minute chat next week to explore if this could fit your market?<br>
+        If so, feel free to grab a slot directly in <a href="https://meetings-eu1.hubspot.com/william-goursat/my-calendar" style="color:var(--or);text-decoration:underline;">my calendar</a>.</p>
+        <br>
+        <p>Best regards,<br>
+        <span style="color:var(--or);font-weight:500;">William</span><br>
+        <span style="color:var(--gris-moyen);font-size:0.75rem;">Follow the journey on <a href="#" style="color:var(--gris-clair);text-decoration:underline;">Instagram</a>.</span></p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="section-label fade-in">Planning</div>
+  <h2 class="section-title fade-in">Roadmap <em>& calendrier</em></h2>
+  <p class="section-intro fade-in">
+    Trois phases distinctes, démarrant le 30 juin 2025. La construction de la base et le warmup des domaines d'envoi se déroulent en parallèle durant les trois premières semaines, pour un lancement de campagne à pleine puissance dès le 21 juillet.
+  </p>
+
+  <!-- TIMELINE BAR -->
+  <div class="timeline-bar fade-in">
+    <div class="timeline-label">Vue d'ensemble — 30 juin → 9 septembre 2025</div>
+    <div class="timeline-track">
+      <div class="timeline-segment seg-warmup"></div>
+      <div class="timeline-segment seg-campaign"></div>
+    </div>
+    <div class="timeline-months">
+      <span class="timeline-month">30 juin</span>
+      <span class="timeline-month">14 juil</span>
+      <span class="timeline-month">21 juil</span>
+      <span class="timeline-month">4 août</span>
+      <span class="timeline-month">18 août</span>
+      <span class="timeline-month">1 sept</span>
+      <span class="timeline-month">9 sept</span>
+    </div>
+    <div class="timeline-legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--or)"></div>
+        Warmup & Setup (3 semaines)
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--bordeaux-clair)"></div>
+        Campagne active (2 mois + 10 jours)
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASES -->
+  <div class="roadmap-phases fade-in">
+
+    <div class="phase">
+      <span class="phase-flag warmup">Phase 1 — Warmup</span>
+      <div class="phase-dates">30 juin<br>→ 20 juil</div>
+      <div class="phase-duration">3 semaines</div>
+      <ul class="phase-items">
+        <li><strong style="color:var(--blanc-casse)">Achat de 3 à 4 nouveaux noms de domaine</strong> — vinessen.co, getvinessen.com, tryvinessen.com… Des domaines "alias" qui redirigent vers vinessen.fr mais protègent le domaine principal de toute réputation négative liée au cold email.</li>
+        <li><strong style="color:var(--blanc-casse)">3 adresses email par domaine</strong> — soit 9 à 12 boîtes au total (ex: william@vinessen.co, hello@vinessen.co, team@vinessen.co). Chaque boîte envoie en parallèle pour multiplier le volume sans surcharger un seul domaine.</li>
+        <li><strong style="color:var(--blanc-casse)">Configuration technique de chaque domaine</strong> — SPF, DKIM, DMARC : les trois protocoles d'authentification email qui prouvent aux serveurs destinataires que les emails sont légitimes et non des spams.</li>
+        <li><strong style="color:var(--blanc-casse)">Warmup automatique via Lemwarm</strong> — pendant 3 semaines, chaque boîte envoie et reçoit automatiquement des emails entre elle et d'autres comptes "sains". Cela construit progressivement une réputation positive auprès de Gmail, Outlook et Yahoo.</li>
+        <li><strong style="color:var(--blanc-casse)">Montée progressive du volume</strong> — semaine 1 : 10 emails/jour/boîte → semaine 2 : 30 → semaine 3 : 50+. Au lancement campagne : capacité totale ~100 emails/jour sans risque de spam.</li>
+        <li>Configuration Lemlist + HubSpot CRM en parallèle</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <span class="phase-flag setup">Phase 1 — Setup BDD (parallèle)</span>
+      <div class="phase-dates">30 juin<br>→ 20 juil</div>
+      <div class="phase-duration">3 semaines</div>
+      <ul class="phase-items">
+        <li>Abonnement Vinaty ou BestWineImporters</li>
+        <li>Export et nettoyage du CSV initial</li>
+        <li>Déploiement du pipeline Make.com complet</li>
+        <li>Scraping sites web + LinkedIn + actualités</li>
+        <li>Scoring Claude Haiku sur l'ensemble des prospects</li>
+        <li>Enrichissement emails Dropcontact / Hunter</li>
+        <li>Base qualifiée prête à l'envoi</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <span class="phase-flag campaign">Phase 2 — Campagne active</span>
+      <div class="phase-dates">21 juil<br>→ 9 sept</div>
+      <div class="phase-duration">2 mois · 10 jours</div>
+      <ul class="phase-items">
+        <li>Lancement séquence email J0 (thumbnail vidéo personnalisé)</li>
+        <li>Touch LinkedIn J3 (connexion + message court)</li>
+        <li>Email de valeur J7 (insight marché ciblé)</li>
+        <li>LinkedIn DM J14 si connecté</li>
+        <li>Email breakup J21</li>
+        <li>Reporting hebdomadaire : opens, clicks, réponses</li>
+        <li>Ajustement des accroches en continu selon les taux</li>
+      </ul>
+    </div>
+
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- SÉQUENCE -->
+<section id="sequence">
+  <div class="section-label fade-in">Outreach</div>
+  <h2 class="section-title fade-in">Séquence <em>de contact</em></h2>
+  <p class="section-intro fade-in">
+    5 touchpoints sur 21 jours, alternant email et LinkedIn. Chaque message apporte une valeur différente — pas de relance à vide.
+  </p>
+
+  <div class="sequence-grid fade-in">
+    <div class="seq-step">
+      <div class="seq-day">Jour 0</div>
+      <span class="seq-icon">📧</span>
+      <div class="seq-title">Email accroche + vidéo</div>
+      <div class="seq-desc">Hook IA personnalisé + thumbnail vidéo Vinessen cliquable avec nom de l'entreprise</div>
+    </div>
+    <div class="seq-step">
+      <div class="seq-day">Jour 3</div>
+      <span class="seq-icon">🔗</span>
+      <div class="seq-title">Demande connexion LinkedIn</div>
+      <div class="seq-desc">Note de connexion courte qui mentionne l'email envoyé — crée un 2ème point de contact</div>
+    </div>
+    <div class="seq-step">
+      <div class="seq-day">Jour 7</div>
+      <span class="seq-icon">📨</span>
+      <div class="seq-title">Email de valeur</div>
+      <div class="seq-desc">1 insight sur leur marché cible (tendance consommation, opportunité de niche) sans mentionner de vente</div>
+    </div>
+    <div class="seq-step">
+      <div class="seq-day">Jour 14</div>
+      <span class="seq-icon">💬</span>
+      <div class="seq-title">LinkedIn DM</div>
+      <div class="seq-desc">Message direct si connecté — bref, humain, propose un échange de 15 minutes</div>
+    </div>
+    <div class="seq-step">
+      <div class="seq-day">Jour 21</div>
+      <span class="seq-icon">👋</span>
+      <div class="seq-title">Email breakup</div>
+      <div class="seq-desc">"Je ne veux pas vous déranger davantage" — souvent le message qui génère le plus de réponses tardives</div>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- OBJECTIFS -->
+<section id="objectifs">
+  <div class="section-label fade-in">Projections</div>
+  <h2 class="section-title fade-in">Objectifs <em>de la campagne</em></h2>
+  <p class="section-intro fade-in">
+    Estimations conservatrices basées sur les benchmarks cold email B2B secteur agroalimentaire/vins, avec vidéo personnalisée dans le premier email.
+  </p>
+
+  <div class="metrics-grid fade-in">
+    <div class="metric-card">
+      <span class="metric-value">40%</span>
+      <div class="metric-label">Taux d'ouverture<br>email ciblé</div>
+      <div class="metric-note">Benchmark secteur vin B2B avec objet personnalisé et domaine chauffé. Moyenne cold email tous secteurs : 21%.</div>
+    </div>
+    <div class="metric-card">
+      <span class="metric-value">8%</span>
+      <div class="metric-label">Taux de réponse<br>séquence complète</div>
+      <div class="metric-note">Vidéo personnalisée + accroche IA + 5 touchpoints. Benchmark standard sans vidéo : 3–4%.</div>
+    </div>
+    <div class="metric-card">
+      <span class="metric-value">~60</span>
+      <div class="metric-label">Réponses positives<br>sur 2 mois</div>
+      <div class="metric-note">Sur une base de 800 prospects contactés/mois × 2 mois. Inclut demandes d'info et RDV.</div>
+    </div>
+    <div class="metric-card">
+      <span class="metric-value">15–25</span>
+      <div class="metric-label">RDV qualifiés<br>estimés</div>
+      <div class="metric-note">Conversion réponse → RDV estimée à 30–40%. Chaque RDV = opportunité de partenariat distribution.</div>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div class="footer-logo">Agence Lak</div>
+    <p>Automatisations IA pour PME</p>
+    <p style="margin-top:0.3rem;font-size:0.7rem;">SIREN 102767654 · TVA FR17102767654</p>
+  </div>
+  <div class="footer-right">
+    <p>
+      <a href="https://lak-agency.com">lak-agency.com</a><br>
+      mindia.agency@gmail.com<br>
+      <span style="color:var(--gris-moyen);font-size:0.68rem;display:block;margin-top:0.5rem;">Document confidentiel — Vinessen × Agence Lak</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Stagger children inside process-grid and other grids
+  document.querySelectorAll('.process-step, .phase, .seq-step, .metric-card').forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 0.08 + 's';
+  });
+
+  // Animated counter (unused, kept for potential future use)
+
+  // Trigger first section fade-ins on load
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#process .fade-in').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), 200 + i * 120);
+    });
+  });
+</script>
+
+</body>
+</html>
