@@ -561,7 +561,7 @@
 
   .roadmap-phases {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 0;
     margin-bottom: 4rem;
     border: 1px solid rgba(200,169,110,0.1);
@@ -569,12 +569,13 @@
 
   .phase {
     padding: 2.5rem;
-    border-right: 1px solid rgba(200,169,110,0.08);
+    border-right: none;
+    border-bottom: 1px solid rgba(200,169,110,0.08);
     position: relative;
     transition: background 0.3s;
   }
 
-  .phase:last-child { border-right: none; }
+  .phase:last-child { border-bottom: none; }
   .phase:hover { background: rgba(26,26,32,0.6); }
 
   .phase-flag {
@@ -608,7 +609,7 @@
 
   .phase-dates {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 300;
     color: var(--blanc);
     line-height: 1.2;
@@ -854,6 +855,95 @@
     text-decoration: none;
   }
 
+  /* ─── COSTS GRID ─── */
+  .costs-grid {
+    border: 1px solid rgba(200,169,110,0.1);
+    overflow: hidden;
+  }
+
+  .cost-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 130px 130px;
+    gap: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.3s;
+  }
+
+  .cost-row:last-child { border-bottom: none; }
+  .cost-row:not(.cost-header):not(.cost-total-row):hover {
+    background: rgba(200,169,110,0.03);
+  }
+
+  .cost-row > span {
+    padding: 1.2rem 1.5rem;
+    font-size: 0.8rem;
+    border-right: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    align-items: center;
+  }
+
+  .cost-row > span:last-child { border-right: none; }
+
+  .cost-header {
+    background: rgba(200,169,110,0.04);
+  }
+
+  .cost-header > span {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--or);
+    opacity: 0.7;
+    font-weight: 500;
+  }
+
+  .cost-name {
+    color: var(--blanc-casse) !important;
+    font-weight: 400;
+  }
+
+  .cost-detail {
+    color: var(--gris-moyen) !important;
+    font-size: 0.75rem !important;
+  }
+
+  .cost-month {
+    color: var(--gris-clair) !important;
+    justify-content: flex-end !important;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cost-total {
+    color: var(--gris-clair) !important;
+    justify-content: flex-end !important;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cost-total-row {
+    background: rgba(200,169,110,0.05);
+    border-top: 1px solid rgba(200,169,110,0.15) !important;
+  }
+
+  .cost-total-row .cost-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem !important;
+    color: var(--blanc) !important;
+  }
+
+  .cost-total-highlight {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem !important;
+    color: var(--or) !important;
+    font-weight: 400;
+  }
+
+  .cost-onetime {
+    color: var(--or) !important;
+    opacity: 0.7;
+    font-size: 0.68rem !important;
+    font-style: italic;
+  }
+
   /* ─── ANIMATIONS ─── */
   .fade-in {
     opacity: 0;
@@ -889,8 +979,7 @@
   <ul class="nav-links">
     <li><a href="#process">Process</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#sequence">Séquence</a></li>
-    <li><a href="#objectifs">Objectifs</a></li>
+    <li><a href="#couts">Frais</a></li>
   </ul>
 </nav>
 
@@ -899,7 +988,7 @@
   <div class="section-label fade-in">Architecture du système</div>
   <h2 class="section-title fade-in">Le process <em>étape par étape</em></h2>
   <p class="section-intro fade-in">
-    Cinq étapes successives, de la construction de la base de données jusqu'à l'envoi des campagnes multicanales. Chaque étape est automatisée via Make.com et l'API d'IA d'Anthropic.
+    Cinq étapes successives, de la construction de la base de données jusqu'à l'envoi des campagnes multicanales.
   </p>
 
   <div class="process-grid">
@@ -939,18 +1028,8 @@
         <span class="step-tag">Contact décisionnaire</span>
         <h3 class="step-title">Identification du contact</h3>
         <p class="step-desc">
-          Avant toute collecte d'informations, on identifie le bon interlocuteur dans chaque entreprise — directeur des achats, import manager, propriétaire. Si aucun contact n'est trouvé, l'entreprise est écartée pour ne pas perdre de temps sur les étapes suivantes. Les emails invalides sont filtrés automatiquement.
+          Pour chaque entreprise on utilise plusieurs outils pour trouver ses décideurs — directeur des achats, import manager, propriétaire. Si aucun email direct n'est trouvé, l'entreprise est écartée.
         </p>
-        <div class="step-detail">
-          <p>Logique de recherche :</p>
-          <div class="flow">
-            <span class="flow-item">Enrichissement email pro</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-item">Si vide : recherche LinkedIn</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-item">Si vide : écarté ou LinkedIn DM uniquement</span>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -963,7 +1042,7 @@
         <span class="step-tag">Enrichissement</span>
         <h3 class="step-title">Collecte d'informations par prospect</h3>
         <p class="step-desc">
-          Une fois le contact identifié, une collecte multi-sources est déclenchée automatiquement : scraping du site web de l'entreprise, recherche d'actualités récentes, extraction des données LinkedIn du décisionnaire lui-même. Ces informations sont centralisées dans le CRM et servent de matière à l'accroche personnalisée.
+          Une fois le contact identifié, une collecte multi-sources est déclenchée automatiquement : scraping du site web de l'entreprise, recherche d'actualités récentes, extraction des données LinkedIn. Ces informations sont centralisées dans le CRM et servent de matière à l'accroche personnalisée.
         </p>
         <div class="step-detail">
           <p>Flux automatisé :</p>
@@ -972,7 +1051,7 @@
             <span class="flow-arrow">+</span>
             <span class="flow-item">Actualités récentes</span>
             <span class="flow-arrow">+</span>
-            <span class="flow-item">LinkedIn du décisionnaire</span>
+            <span class="flow-item">LinkedIn</span>
             <span class="flow-arrow">→</span>
             <span class="flow-item">Centralisation dans le CRM HubSpot</span>
           </div>
@@ -991,12 +1070,6 @@
         <p class="step-desc">
           Pour chaque prospect, l'IA génère une accroche email unique de 2 phrases basée sur les informations collectées à l'étape précédente. Si les informations collectées ne sont pas suffisantes, le prospect est automatiquement basculé dans une campagne de prospection sans accroche personnalisée.
         </p>
-        <div class="step-detail">
-          <p>Exemple d'output pour un importateur néerlandais :</p>
-          <div class="flow" style="margin-top:0.6rem">
-            <span class="flow-item" style="font-style:italic;font-size:0.68rem;color:var(--or-pale);">"Nous avons parcouru votre sélection sur VinNL — solide sur l'Italie et l'Espagne, mais aucun Languedoc à ce stade. C'est précisément là que Vinessen travaille depuis 12 ans."</span>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -1009,94 +1082,13 @@
         <span class="step-tag">Outreach multicanal</span>
         <h3 class="step-title">Envoi campagne</h3>
         <p class="step-desc">
-          Le prospect est injecté dans la séquence avec toutes ses variables : accroche IA, email vérifié, nom de l'entreprise. Le premier email intègre un thumbnail cliquable personnalisé — une image dans le thème Vinessen avec le nom de l'entreprise en superposition. Un clic redirige vers la vidéo motion design. La séquence enchaîne ensuite 4 touchpoints complémentaires sur 21 jours.
+          Le prospect est injecté dans la séquence avec toutes ses variables : accroche IA, email vérifié, nom de l'entreprise. On va également essayer d'ajouter une image personnalisée sur la vidéo de l'email pour chaque contact avec <em style="color:var(--or-pale)">[Nom de l'entreprise] × Vinessen</em> — pour renforcer la personnalisation et améliorer le taux de clic. Les campagnes démarrent après 3 semaines de warmup (expliqué plus bas), puis s'enchaînent sur 2 mois d'envois email et messages LinkedIn. On mettra en place plusieurs stratégies, approches et types d'emails différents pour identifier ce qui fonctionne le mieux.
         </p>
-        <div class="step-detail">
-          <p>Thumbnail email :</p>
-          <div class="flow" style="margin-top:0.5rem">
-            <span class="flow-item">Image thème Vinessen</span>
-            <span class="flow-arrow">+</span>
-            <span class="flow-item">Nom entreprise en variable</span>
-            <span class="flow-arrow">+</span>
-            <span class="flow-item">Bouton ▶</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-item">Clic → vidéo motion design</span>
-          </div>
-        </div>
       </div>
     </div>
 
   </div>
 
-  <!-- EMAIL MOCKUP -->
-  <div class="email-mockup fade-in">
-    <div class="email-header">
-      <div class="email-dot" style="background:#ff5f57"></div>
-      <div class="email-dot" style="background:#febc2e"></div>
-      <div class="email-dot" style="background:#28c840"></div>
-      <span style="font-size:0.7rem;color:var(--gris-moyen);margin-left:1rem;letter-spacing:0.05em;">Aperçu email — Schmidt Weinimport GmbH</span>
-    </div>
-    <div class="email-body">
-      <div class="email-field">
-        <span class="email-field-label">De</span>
-        <span class="email-field-value">william@vinessen.co</span>
-      </div>
-      <div class="email-field">
-        <span class="email-field-label">À</span>
-        <span class="email-field-value">thomas.schmidt@schmidtwein.de</span>
-      </div>
-      <div class="email-field">
-        <span class="email-field-label">Objet</span>
-        <span class="email-field-value">Let's make wine sexy again!</span>
-      </div>
-
-      <div class="email-content">
-        <p>Hello Thomas,</p>
-        <br>
-
-        <div class="email-highlight">
-          <span style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--or);opacity:0.7;">✦ Accroche personnalisée — générée par IA pour chaque prospect</span><br><br>
-          <span style="font-size:0.82rem;color:var(--or-pale);font-style:italic;">Lorem ipsum dolor sit amet, consectetur adipiscing elit — sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam.</span>
-        </div>
-
-        <p>I thought I'd share something we've been building lately.<br>
-        Wine deserves to feel alive again.<br>
-        What if every bottle became a story, a human connection and a real shared moment?</p>
-        <br>
-        <p>🎬 1 minute to discover how we want to reinvent wine discovery:</p>
-
-        <!-- THUMBNAIL IMAGE — image statique thème vin, texte "Company × Vinessen" superposé via variable Lemlist -->
-        <div class="email-video-thumb">
-          <!-- Décor visuel fond -->
-          <div class="thumb-deco-lines"></div>
-          <div class="thumb-bottle"></div>
-          <!-- Texte personnalisé : la seule variable qui change par prospect -->
-          <div class="thumb-personalization">
-            <span class="thumb-company-name">Schmidt Weinimport</span>
-            <span class="thumb-separator">×</span>
-            <span class="thumb-vinessen">Vinessen</span>
-          </div>
-          <!-- Play button -->
-          <div class="video-overlay">
-            <div class="video-play-circle">▶</div>
-          </div>
-          <!-- Barre durée -->
-          <div class="video-bottom-bar">
-            <span style="font-size:0.6rem;color:rgba(200,169,110,0.5);font-style:italic;letter-spacing:0.05em;">Image cliquable — redirige vers la vidéo Vinessen</span>
-            <div class="video-duration">01:05</div>
-          </div>
-        </div>
-
-        <br>
-        <p>Open to a quick 15-minute chat next week to explore if this could fit your market?<br>
-        If so, feel free to grab a slot directly in <a href="https://meetings-eu1.hubspot.com/william-goursat/my-calendar" style="color:var(--or);text-decoration:underline;">my calendar</a>.</p>
-        <br>
-        <p>Best regards,<br>
-        <span style="color:var(--or);font-weight:500;">William</span><br>
-        <span style="color:var(--gris-moyen);font-size:0.75rem;">Follow the journey on <a href="#" style="color:var(--gris-clair);text-decoration:underline;">Instagram</a>.</span></p>
-      </div>
-    </div>
-  </div>
 
 </section>
 
@@ -1143,45 +1135,39 @@
 
     <div class="phase">
       <span class="phase-flag warmup">Phase 1 — Warmup</span>
-      <div class="phase-dates">30 juin<br>→ 20 juil</div>
+      <div class="phase-dates">30 juin → 20 juil</div>
       <div class="phase-duration">3 semaines</div>
       <ul class="phase-items">
-        <li><strong style="color:var(--blanc-casse)">Achat de 3 à 4 nouveaux noms de domaine</strong> — vinessen.co, getvinessen.com, tryvinessen.com… Des domaines "alias" qui redirigent vers vinessen.fr mais protègent le domaine principal de toute réputation négative liée au cold email.</li>
-        <li><strong style="color:var(--blanc-casse)">3 adresses email par domaine</strong> — soit 9 à 12 boîtes au total (ex: william@vinessen.co, hello@vinessen.co, team@vinessen.co). Chaque boîte envoie en parallèle pour multiplier le volume sans surcharger un seul domaine.</li>
-        <li><strong style="color:var(--blanc-casse)">Configuration technique de chaque domaine</strong> — SPF, DKIM, DMARC : les trois protocoles d'authentification email qui prouvent aux serveurs destinataires que les emails sont légitimes et non des spams.</li>
-        <li><strong style="color:var(--blanc-casse)">Warmup automatique via Lemwarm</strong> — pendant 3 semaines, chaque boîte envoie et reçoit automatiquement des emails entre elle et d'autres comptes "sains". Cela construit progressivement une réputation positive auprès de Gmail, Outlook et Yahoo.</li>
-        <li><strong style="color:var(--blanc-casse)">Montée progressive du volume</strong> — semaine 1 : 10 emails/jour/boîte → semaine 2 : 30 → semaine 3 : 50+. Au lancement campagne : capacité totale ~100 emails/jour sans risque de spam.</li>
-        <li>Configuration Lemlist + HubSpot CRM en parallèle</li>
+        <li><strong style="color:var(--blanc-casse)">Achat de 3 à 4 noms de domaine alias</strong> — des domaines comme getvinessen.com qui redirigent vers vinessen.fr, pour protéger le domaine principal de toute réputation négative liée au cold email.</li>
+        <li><strong style="color:var(--blanc-casse)">3 adresses email par domaine</strong> — soit 9 à 12 boîtes au total. Chaque boîte envoie en parallèle pour multiplier le volume sans surcharger un seul domaine.</li>
+        <li><strong style="color:var(--blanc-casse)">Configuration technique</strong> — SPF, DKIM, DMARC : les protocoles qui prouvent aux serveurs destinataires que les emails sont légitimes.</li>
+        <li><strong style="color:var(--blanc-casse)">Warmup automatique</strong> — pendant 3 semaines, chaque boîte envoie et reçoit des emails avec d'autres comptes "sains" pour construire une réputation positive auprès de Gmail, Outlook et Yahoo.</li>
       </ul>
     </div>
 
     <div class="phase">
-      <span class="phase-flag setup">Phase 1 — Setup BDD (parallèle)</span>
-      <div class="phase-dates">30 juin<br>→ 20 juil</div>
+      <span class="phase-flag setup">Phase 1 — Setup (parallèle)</span>
+      <div class="phase-dates">30 juin → 20 juil</div>
       <div class="phase-duration">3 semaines</div>
+      <p style="font-size:0.8rem;color:var(--gris-moyen);line-height:1.7;margin-bottom:1.2rem;">Mise en place de la base de données importateurs — identification des contacts, enrichissement emails et génération des accroches IA. Mise en place des stratégies de prospection avec les séquences emails et LinkedIn. Mise en place des scripts de prospection (messages types).</p>
       <ul class="phase-items">
-        <li>Abonnement Vinaty ou BestWineImporters</li>
-        <li>Export et nettoyage du CSV initial</li>
-        <li>Déploiement du pipeline Make.com complet</li>
-        <li>Scraping sites web + LinkedIn + actualités</li>
-        <li>Scoring Claude Haiku sur l'ensemble des prospects</li>
-        <li>Enrichissement emails Dropcontact / Hunter</li>
-        <li>Base qualifiée prête à l'envoi</li>
+        <li>Sourcing et nettoyage de la base importateurs</li>
+        <li>Pipeline d'automatisation complet déployé</li>
+        <li>Identification contacts et enrichissement emails</li>
+        <li>Génération des accroches IA</li>
+        <li>Séquences et messages types rédigés et configurés</li>
       </ul>
     </div>
 
     <div class="phase">
       <span class="phase-flag campaign">Phase 2 — Campagne active</span>
-      <div class="phase-dates">21 juil<br>→ 9 sept</div>
+      <div class="phase-dates">21 juil → 9 sept</div>
       <div class="phase-duration">2 mois · 10 jours</div>
       <ul class="phase-items">
-        <li>Lancement séquence email J0 (thumbnail vidéo personnalisé)</li>
-        <li>Touch LinkedIn J3 (connexion + message court)</li>
-        <li>Email de valeur J7 (insight marché ciblé)</li>
-        <li>LinkedIn DM J14 si connecté</li>
-        <li>Email breakup J21</li>
-        <li>Reporting hebdomadaire : opens, clicks, réponses</li>
-        <li>Ajustement des accroches en continu selon les taux</li>
+        <li>Lancement des séquences email + LinkedIn</li>
+        <li>Plusieurs approches et types d'emails testés en parallèle</li>
+        <li>Reporting hebdomadaire</li>
+        <li>Ajustement des accroches et stratégies en continu</li>
       </ul>
     </div>
 
@@ -1191,80 +1177,72 @@
 
 <div class="divider"></div>
 
-<!-- SÉQUENCE -->
-<section id="sequence">
-  <div class="section-label fade-in">Outreach</div>
-  <h2 class="section-title fade-in">Séquence <em>de contact</em></h2>
+<!-- COÛTS -->
+<section id="couts">
+  <div class="section-label fade-in">Budget</div>
+  <h2 class="section-title fade-in">Estimation des <em>frais logiciels</em></h2>
   <p class="section-intro fade-in">
-    5 touchpoints sur 21 jours, alternant email et LinkedIn. Chaque message apporte une valeur différente — pas de relance à vide.
+    Estimation sur 3 mois. Les montants sont indicatifs — certains postes comme la base de données sont à affiner selon le choix final de l'outil.
   </p>
 
-  <div class="sequence-grid fade-in">
-    <div class="seq-step">
-      <div class="seq-day">Jour 0</div>
-      <span class="seq-icon">📧</span>
-      <div class="seq-title">Email accroche + vidéo</div>
-      <div class="seq-desc">Hook IA personnalisé + thumbnail vidéo Vinessen cliquable avec nom de l'entreprise</div>
-    </div>
-    <div class="seq-step">
-      <div class="seq-day">Jour 3</div>
-      <span class="seq-icon">🔗</span>
-      <div class="seq-title">Demande connexion LinkedIn</div>
-      <div class="seq-desc">Note de connexion courte qui mentionne l'email envoyé — crée un 2ème point de contact</div>
-    </div>
-    <div class="seq-step">
-      <div class="seq-day">Jour 7</div>
-      <span class="seq-icon">📨</span>
-      <div class="seq-title">Email de valeur</div>
-      <div class="seq-desc">1 insight sur leur marché cible (tendance consommation, opportunité de niche) sans mentionner de vente</div>
-    </div>
-    <div class="seq-step">
-      <div class="seq-day">Jour 14</div>
-      <span class="seq-icon">💬</span>
-      <div class="seq-title">LinkedIn DM</div>
-      <div class="seq-desc">Message direct si connecté — bref, humain, propose un échange de 15 minutes</div>
-    </div>
-    <div class="seq-step">
-      <div class="seq-day">Jour 21</div>
-      <span class="seq-icon">👋</span>
-      <div class="seq-title">Email breakup</div>
-      <div class="seq-desc">"Je ne veux pas vous déranger davantage" — souvent le message qui génère le plus de réponses tardives</div>
-    </div>
-  </div>
+  <div class="costs-grid fade-in">
 
-</section>
+    <div class="cost-row cost-header">
+      <span>Poste</span>
+      <span>Détail</span>
+      <span>Fréquence</span>
+      <span>Montant</span>
+    </div>
 
-<div class="divider"></div>
+    <div class="cost-row">
+      <span class="cost-name">Lemlist</span>
+      <span class="cost-detail">Envoi campagnes email + warmup intégré</span>
+      <span class="cost-month">99 € × 3 mois</span>
+      <span class="cost-total">297 €</span>
+    </div>
 
-<!-- OBJECTIFS -->
-<section id="objectifs">
-  <div class="section-label fade-in">Projections</div>
-  <h2 class="section-title fade-in">Objectifs <em>de la campagne</em></h2>
-  <p class="section-intro fade-in">
-    Estimations conservatrices basées sur les benchmarks cold email B2B secteur agroalimentaire/vins, avec vidéo personnalisée dans le premier email.
-  </p>
+    <div class="cost-row">
+      <span class="cost-name">Boîtes email × 12</span>
+      <span class="cost-detail">3 adresses par domaine — 5 €/boîte/mois</span>
+      <span class="cost-month">60 € × 3 mois</span>
+      <span class="cost-total">180 €</span>
+    </div>
 
-  <div class="metrics-grid fade-in">
-    <div class="metric-card">
-      <span class="metric-value">40%</span>
-      <div class="metric-label">Taux d'ouverture<br>email ciblé</div>
-      <div class="metric-note">Benchmark secteur vin B2B avec objet personnalisé et domaine chauffé. Moyenne cold email tous secteurs : 21%.</div>
+    <div class="cost-row">
+      <span class="cost-name">Base de données vin</span>
+      <span class="cost-detail">Vinaty ou BestWineImporters — à définir selon le choix</span>
+      <span class="cost-month cost-onetime">One-shot</span>
+      <span class="cost-total">173 – 550 €</span>
     </div>
-    <div class="metric-card">
-      <span class="metric-value">8%</span>
-      <div class="metric-label">Taux de réponse<br>séquence complète</div>
-      <div class="metric-note">Vidéo personnalisée + accroche IA + 5 touchpoints. Benchmark standard sans vidéo : 3–4%.</div>
+
+    <div class="cost-row">
+      <span class="cost-name">Noms de domaine × 4</span>
+      <span class="cost-detail">Domaines alias pour protéger vinessen.fr</span>
+      <span class="cost-month cost-onetime">One-shot</span>
+      <span class="cost-total">40 €</span>
     </div>
-    <div class="metric-card">
-      <span class="metric-value">~60</span>
-      <div class="metric-label">Réponses positives<br>sur 2 mois</div>
-      <div class="metric-note">Sur une base de 800 prospects contactés/mois × 2 mois. Inclut demandes d'info et RDV.</div>
+
+    <div class="cost-row">
+      <span class="cost-name">Outils d'enrichissement</span>
+      <span class="cost-detail">Recherche emails décisionnaires + scraping</span>
+      <span class="cost-month cost-onetime">One-shot</span>
+      <span class="cost-total">70 €</span>
     </div>
-    <div class="metric-card">
-      <span class="metric-value">15–25</span>
-      <div class="metric-label">RDV qualifiés<br>estimés</div>
-      <div class="metric-note">Conversion réponse → RDV estimée à 30–40%. Chaque RDV = opportunité de partenariat distribution.</div>
+
+    <div class="cost-row">
+      <span class="cost-name">Frais divers</span>
+      <span class="cost-detail">API, crédits, imprévus</span>
+      <span class="cost-month cost-onetime">One-shot</span>
+      <span class="cost-total">50 €</span>
     </div>
+
+    <div class="cost-row cost-total-row">
+      <span class="cost-name">Total estimé</span>
+      <span class="cost-detail">Sur 3 mois — estimation indicative, peut varier selon les outils retenus</span>
+      <span class="cost-month"></span>
+      <span class="cost-total" style="color:var(--or);">entre 800 et 1 200 €</span>
+    </div>
+
   </div>
 
 </section>
@@ -1274,16 +1252,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-left">
-    <div class="footer-logo">Agence Lak</div>
-    <p>Automatisations IA pour PME</p>
-    <p style="margin-top:0.3rem;font-size:0.7rem;">SIREN 102767654 · TVA FR17102767654</p>
-  </div>
-  <div class="footer-right">
-    <p>
-      <a href="https://lak-agency.com">lak-agency.com</a><br>
-      mindia.agency@gmail.com<br>
-      <span style="color:var(--gris-moyen);font-size:0.68rem;display:block;margin-top:0.5rem;">Document confidentiel — Vinessen × Agence Lak</span>
-    </p>
+    <div class="footer-logo">Agence Lak.</div>
   </div>
 </footer>
 
